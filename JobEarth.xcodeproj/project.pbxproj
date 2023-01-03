@@ -14,6 +14,15 @@
 		BFC6489D2962BB350030600C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC6489C2962BB350030600C /* Assets.xcassets */; };
 		BFC648A02962BB350030600C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC6489E2962BB350030600C /* LaunchScreen.storyboard */; };
 		BFC648AB2962BB360030600C /* JobEarthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648AA2962BB360030600C /* JobEarthTests.swift */; };
+		BFC648D32962BCFE0030600C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BFC648D22962BCFE0030600C /* RxSwift */; };
+		BFC648D52962BD170030600C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BFC648D42962BD170030600C /* RxCocoa */; };
+		BFC648D72962BD170030600C /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = BFC648D62962BD170030600C /* RxRelay */; };
+		BFC648DA2962BD5B0030600C /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BFC648D92962BD5B0030600C /* RxAlamofire */; };
+		BFC648E22962C4E80030600C /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648E12962C4E80030600C /* SearchTextField.swift */; };
+		BFC648E62962CB0D0030600C /* SelectCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFC648E52962CB0D0030600C /* SelectCategoryView.xib */; };
+		BFC648EA2962CE4B0030600C /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648E92962CE4B0030600C /* CategoryButton.swift */; };
+		BFC648F02962D0CD0030600C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648EF2962D0CD0030600C /* UIColor.swift */; };
+		BFC648F32962D1DE0030600C /* SelectCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648F22962D1DE0030600C /* SelectCategoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +54,11 @@
 		BFC648A62962BB360030600C /* JobEarthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobEarthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC648AA2962BB360030600C /* JobEarthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobEarthTests.swift; sourceTree = "<group>"; };
 		BFC648B02962BB360030600C /* JobEarthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobEarthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFC648E12962C4E80030600C /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		BFC648E52962CB0D0030600C /* SelectCategoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCategoryView.xib; sourceTree = "<group>"; };
+		BFC648E92962CE4B0030600C /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
+		BFC648EF2962D0CD0030600C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		BFC648F22962D1DE0030600C /* SelectCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +66,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFC648D72962BD170030600C /* RxRelay in Frameworks */,
+				BFC648DA2962BD5B0030600C /* RxAlamofire in Frameworks */,
+				BFC648D52962BD170030600C /* RxCocoa in Frameworks */,
+				BFC648D32962BCFE0030600C /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +96,7 @@
 				BFC648922962BB340030600C /* JobEarth */,
 				BFC648A92962BB360030600C /* JobEarthTests */,
 				BFC648912962BB340030600C /* Products */,
+				BFC648C42962BC990030600C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,8 +115,8 @@
 			children = (
 				BFC648932962BB340030600C /* AppDelegate.swift */,
 				BFC648952962BB340030600C /* SceneDelegate.swift */,
-				BFC648972962BB340030600C /* ViewController.swift */,
-				BFC648992962BB340030600C /* Main.storyboard */,
+				BFC648EE2962D05F0030600C /* Extension */,
+				BFC648DB2962C22D0030600C /* Presentation */,
 				BFC6489C2962BB350030600C /* Assets.xcassets */,
 				BFC6489E2962BB350030600C /* LaunchScreen.storyboard */,
 				BFC648A12962BB350030600C /* Info.plist */,
@@ -111,6 +130,66 @@
 				BFC648AA2962BB360030600C /* JobEarthTests.swift */,
 			);
 			path = JobEarthTests;
+			sourceTree = "<group>";
+		};
+		BFC648C42962BC990030600C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BFC648DB2962C22D0030600C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				BFC648DC2962C2390030600C /* Components */,
+				BFC648972962BB340030600C /* ViewController.swift */,
+				BFC648992962BB340030600C /* Main.storyboard */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		BFC648DC2962C2390030600C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BFC648F42962D4CE0030600C /* Common */,
+				BFC648E12962C4E80030600C /* SearchTextField.swift */,
+				BFC648F12962D1CF0030600C /* SelectCategoryView */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BFC648EB2962CF460030600C /* CategoryButton */ = {
+			isa = PBXGroup;
+			children = (
+				BFC648E92962CE4B0030600C /* CategoryButton.swift */,
+			);
+			path = CategoryButton;
+			sourceTree = "<group>";
+		};
+		BFC648EE2962D05F0030600C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BFC648EF2962D0CD0030600C /* UIColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BFC648F12962D1CF0030600C /* SelectCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				BFC648E52962CB0D0030600C /* SelectCategoryView.xib */,
+				BFC648F22962D1DE0030600C /* SelectCategoryView.swift */,
+				BFC648EB2962CF460030600C /* CategoryButton */,
+			);
+			path = SelectCategoryView;
+			sourceTree = "<group>";
+		};
+		BFC648F42962D4CE0030600C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,6 +208,12 @@
 			dependencies = (
 			);
 			name = JobEarth;
+			packageProductDependencies = (
+				BFC648D22962BCFE0030600C /* RxSwift */,
+				BFC648D42962BD170030600C /* RxCocoa */,
+				BFC648D62962BD170030600C /* RxRelay */,
+				BFC648D92962BD5B0030600C /* RxAlamofire */,
+			);
 			productName = JobEarth;
 			productReference = BFC648902962BB340030600C /* JobEarth.app */;
 			productType = "com.apple.product-type.application";
@@ -201,6 +286,11 @@
 				Base,
 			);
 			mainGroup = BFC648872962BB340030600C;
+			packageReferences = (
+				BFC648C32962BC8E0030600C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				BFC648CB2962BCD40030600C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				BFC648D82962BD5B0030600C /* XCRemoteSwiftPackageReference "RxAlamofire" */,
+			);
 			productRefGroup = BFC648912962BB340030600C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -217,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFC648E62962CB0D0030600C /* SelectCategoryView.xib in Resources */,
 				BFC648A02962BB350030600C /* LaunchScreen.storyboard in Resources */,
 				BFC6489D2962BB350030600C /* Assets.xcassets in Resources */,
 				BFC6489B2962BB340030600C /* Main.storyboard in Resources */,
@@ -245,8 +336,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC648982962BB340030600C /* ViewController.swift in Sources */,
+				BFC648F02962D0CD0030600C /* UIColor.swift in Sources */,
+				BFC648F32962D1DE0030600C /* SelectCategoryView.swift in Sources */,
+				BFC648EA2962CE4B0030600C /* CategoryButton.swift in Sources */,
 				BFC648942962BB340030600C /* AppDelegate.swift in Sources */,
 				BFC648962962BB340030600C /* SceneDelegate.swift in Sources */,
+				BFC648E22962C4E80030600C /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +681,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BFC648C32962BC8E0030600C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		BFC648CB2962BCD40030600C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		BFC648D82962BD5B0030600C /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BFC648D22962BCFE0030600C /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFC648C32962BC8E0030600C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		BFC648D42962BD170030600C /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFC648C32962BC8E0030600C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		BFC648D62962BD170030600C /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFC648C32962BC8E0030600C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		BFC648D92962BD5B0030600C /* RxAlamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFC648D82962BD5B0030600C /* XCRemoteSwiftPackageReference "RxAlamofire" */;
+			productName = RxAlamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BFC648882962BB340030600C /* Project object */;
 }
