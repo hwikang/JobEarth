@@ -35,6 +35,15 @@
         "branch" : "main",
         "revision" : "91a36920b1ec069004fef9dc41b7c5dbcaa5fffe"
       }
+    },
+    {
+      "identity" : "swinject",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Swinject/Swinject.git",
+      "state" : {
+        "revision" : "8bc503e60965298984fb58cf47b71c541449fe2a",
+        "version" : "2.8.3"
+      }
     }
   ],
   "version" : 2

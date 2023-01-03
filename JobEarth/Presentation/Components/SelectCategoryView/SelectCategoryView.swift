@@ -11,13 +11,13 @@ import RxRelay
 import RxCocoa
 
 enum ListCategory {
-    case hire
+    case recruit
     case company
 }
 
 class SelectCategoryView: UIView {
     private let disposeBag = DisposeBag()
-    private let category = BehaviorRelay<ListCategory>(value: .hire)
+    private let category = BehaviorRelay<ListCategory>(value: .recruit)
     @IBOutlet weak var hireButton: CategoryButton!
     @IBOutlet weak var companyButton: CategoryButton!
     
@@ -41,7 +41,7 @@ class SelectCategoryView: UIView {
     
     private func bindView() {
         hireButton.rx.tap.bind {[weak self]  in
-            self?.category.accept(.hire)
+            self?.category.accept(.recruit)
         }.disposed(by: disposeBag)
         
         companyButton.rx.tap.bind {[weak self]  in
@@ -50,7 +50,7 @@ class SelectCategoryView: UIView {
         
         category.asDriver().drive {[weak self]  category in
             switch category {
-            case .hire:
+            case .recruit:
                 self?.hireButton.setSelectedUI()
                 self?.companyButton.setUnselectedUI()
 

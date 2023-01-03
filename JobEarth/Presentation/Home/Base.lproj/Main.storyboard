@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JobEarth" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cpX-lh-TLm" customClass="SearchTextField" customModule="JobEarth" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="fIe-FE-Ht0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="0.0"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s10-dU-sZd">
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ke-1r-GIV">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSP-kQ-mug" customClass="SelectCategoryView" customModule="JobEarth" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="64" id="Nv0-kr-U86"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0x9-G7-npd">
+                                                <rect key="frame" x="0.0" y="64" width="414" height="1694"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1694" id="CtZ-C4-HOb"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="MSP-kQ-mug" firstAttribute="top" secondItem="7ke-1r-GIV" secondAttribute="top" id="H2R-wE-VnJ"/>
+                                            <constraint firstItem="MSP-kQ-mug" firstAttribute="leading" secondItem="7ke-1r-GIV" secondAttribute="leading" id="Ljb-YW-CZU"/>
+                                            <constraint firstItem="0x9-G7-npd" firstAttribute="top" secondItem="MSP-kQ-mug" secondAttribute="bottom" id="Mkg-0I-eJ6"/>
+                                            <constraint firstAttribute="trailing" secondItem="0x9-G7-npd" secondAttribute="trailing" id="fkh-g7-AVd"/>
+                                            <constraint firstItem="0x9-G7-npd" firstAttribute="leading" secondItem="7ke-1r-GIV" secondAttribute="leading" id="q70-AB-22C"/>
+                                            <constraint firstAttribute="trailing" secondItem="MSP-kQ-mug" secondAttribute="trailing" id="sW2-OA-BGg"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="7ke-1r-GIV" secondAttribute="bottom" id="6Gn-2U-YkZ"/>
+                                    <constraint firstItem="7ke-1r-GIV" firstAttribute="leading" secondItem="s10-dU-sZd" secondAttribute="leading" id="8ou-us-hnx"/>
+                                    <constraint firstItem="7ke-1r-GIV" firstAttribute="width" secondItem="s10-dU-sZd" secondAttribute="width" id="FFu-0Z-iwq"/>
+                                    <constraint firstItem="7ke-1r-GIV" firstAttribute="height" secondItem="s10-dU-sZd" secondAttribute="height" id="HVc-xN-I9c"/>
+                                    <constraint firstAttribute="trailing" secondItem="7ke-1r-GIV" secondAttribute="trailing" id="mFo-Mq-IGw"/>
+                                    <constraint firstItem="7ke-1r-GIV" firstAttribute="top" secondItem="s10-dU-sZd" secondAttribute="top" id="nr8-A5-swp"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="eFq-5g-TOn"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="G9x-4E-eEn"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cpX-lh-TLm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AId-h6-Thz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cpX-lh-TLm" secondAttribute="trailing" id="BJg-Y1-tOf"/>
+                            <constraint firstItem="s10-dU-sZd" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="BQg-wx-cXT"/>
+                            <constraint firstItem="s10-dU-sZd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="CkY-vs-ynN"/>
+                            <constraint firstItem="cpX-lh-TLm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KbQ-Is-ZR7"/>
+                            <constraint firstItem="s10-dU-sZd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Q3j-e2-aw5"/>
+                            <constraint firstItem="s10-dU-sZd" firstAttribute="top" secondItem="cpX-lh-TLm" secondAttribute="bottom" constant="8" symbolic="YES" id="kxG-f2-Re4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="0x9-G7-npd" id="zTb-f9-yaM"/>
+                        <outlet property="selectCategoryView" destination="MSP-kQ-mug" id="7hO-5A-zVN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-26.086956521739133" y="83.705357142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -23,6 +23,11 @@
 		BFC648EA2962CE4B0030600C /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648E92962CE4B0030600C /* CategoryButton.swift */; };
 		BFC648F02962D0CD0030600C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648EF2962D0CD0030600C /* UIColor.swift */; };
 		BFC648F32962D1DE0030600C /* SelectCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648F22962D1DE0030600C /* SelectCategoryView.swift */; };
+		BFC648FE2963D21D0030600C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648FD2963D21D0030600C /* Network.swift */; };
+		BFC649002963D51B0030600C /* RecruitNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648FF2963D51B0030600C /* RecruitNetwork.swift */; };
+		BFC649032963D5C60030600C /* Recruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC649022963D5C60030600C /* Recruit.swift */; };
+		BFC6490529641FC70030600C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6490429641FC70030600C /* ViewModel.swift */; };
+		BFC64908296420610030600C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = BFC64907296420610030600C /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +64,10 @@
 		BFC648E92962CE4B0030600C /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		BFC648EF2962D0CD0030600C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		BFC648F22962D1DE0030600C /* SelectCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryView.swift; sourceTree = "<group>"; };
+		BFC648FD2963D21D0030600C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		BFC648FF2963D51B0030600C /* RecruitNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitNetwork.swift; sourceTree = "<group>"; };
+		BFC649022963D5C60030600C /* Recruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruit.swift; sourceTree = "<group>"; };
+		BFC6490429641FC70030600C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC648D72962BD170030600C /* RxRelay in Frameworks */,
+				BFC64908296420610030600C /* Swinject in Frameworks */,
 				BFC648DA2962BD5B0030600C /* RxAlamofire in Frameworks */,
 				BFC648D52962BD170030600C /* RxCocoa in Frameworks */,
 				BFC648D32962BCFE0030600C /* RxSwift in Frameworks */,
@@ -117,7 +127,9 @@
 				BFC648952962BB340030600C /* SceneDelegate.swift */,
 				BFC648EE2962D05F0030600C /* Extension */,
 				BFC648DB2962C22D0030600C /* Presentation */,
+				BFC648FC2963D14A0030600C /* Network */,
 				BFC6489C2962BB350030600C /* Assets.xcassets */,
+				BFC649012963D59D0030600C /* Domain */,
 				BFC6489E2962BB350030600C /* LaunchScreen.storyboard */,
 				BFC648A12962BB350030600C /* Info.plist */,
 			);
@@ -143,8 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				BFC648DC2962C2390030600C /* Components */,
-				BFC648972962BB340030600C /* ViewController.swift */,
-				BFC648992962BB340030600C /* Main.storyboard */,
+				BFC648FB2963D1260030600C /* Home */,
+				BFC648F82963C9940030600C /* CollectionView */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -192,6 +204,40 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		BFC648F82963C9940030600C /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		BFC648FB2963D1260030600C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BFC648972962BB340030600C /* ViewController.swift */,
+				BFC6490429641FC70030600C /* ViewModel.swift */,
+				BFC648992962BB340030600C /* Main.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BFC648FC2963D14A0030600C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BFC648FD2963D21D0030600C /* Network.swift */,
+				BFC648FF2963D51B0030600C /* RecruitNetwork.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BFC649012963D59D0030600C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				BFC649022963D5C60030600C /* Recruit.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -213,6 +259,7 @@
 				BFC648D42962BD170030600C /* RxCocoa */,
 				BFC648D62962BD170030600C /* RxRelay */,
 				BFC648D92962BD5B0030600C /* RxAlamofire */,
+				BFC64907296420610030600C /* Swinject */,
 			);
 			productName = JobEarth;
 			productReference = BFC648902962BB340030600C /* JobEarth.app */;
@@ -290,6 +337,7 @@
 				BFC648C32962BC8E0030600C /* XCRemoteSwiftPackageReference "RxSwift" */,
 				BFC648CB2962BCD40030600C /* XCRemoteSwiftPackageReference "RxSwift" */,
 				BFC648D82962BD5B0030600C /* XCRemoteSwiftPackageReference "RxAlamofire" */,
+				BFC64906296420610030600C /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = BFC648912962BB340030600C /* Products */;
 			projectDirPath = "";
@@ -337,10 +385,14 @@
 			files = (
 				BFC648982962BB340030600C /* ViewController.swift in Sources */,
 				BFC648F02962D0CD0030600C /* UIColor.swift in Sources */,
+				BFC648FE2963D21D0030600C /* Network.swift in Sources */,
+				BFC6490529641FC70030600C /* ViewModel.swift in Sources */,
 				BFC648F32962D1DE0030600C /* SelectCategoryView.swift in Sources */,
 				BFC648EA2962CE4B0030600C /* CategoryButton.swift in Sources */,
 				BFC648942962BB340030600C /* AppDelegate.swift in Sources */,
 				BFC648962962BB340030600C /* SceneDelegate.swift in Sources */,
+				BFC649002963D51B0030600C /* RecruitNetwork.swift in Sources */,
+				BFC649032963D5C60030600C /* Recruit.swift in Sources */,
 				BFC648E22962C4E80030600C /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,6 +759,14 @@
 				kind = branch;
 			};
 		};
+		BFC64906296420610030600C /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -729,6 +789,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BFC648D82962BD5B0030600C /* XCRemoteSwiftPackageReference "RxAlamofire" */;
 			productName = RxAlamofire;
+		};
+		BFC64907296420610030600C /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFC64906296420610030600C /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
