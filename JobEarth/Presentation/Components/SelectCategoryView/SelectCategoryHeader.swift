@@ -1,8 +1,8 @@
 //
-//  SelectCategoryView.swift
+//  SelectCategoryHeader.swift
 //  JobEarth
 //
-//  Created by Dumveloper on 2023/01/02.
+//  Created by Dumveloper on 2023/01/04.
 //
 
 import UIKit
@@ -10,16 +10,20 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
-enum ListCategory {
-    case recruit
-    case company
-}
 
-class SelectCategoryView: UIView {
+class SelectCategoryHeader: UICollectionReusableView {
+    static let id = "SelectCategoryHeader"
     private let disposeBag = DisposeBag()
-    private let category = BehaviorRelay<ListCategory>(value: .recruit)
-    @IBOutlet weak var hireButton: CategoryButton!
+    private let category = BehaviorRelay<CategoryType>(value: .recruit)
+    @IBOutlet weak var recruitButton: CategoryButton!
     @IBOutlet weak var companyButton: CategoryButton!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        print("Init header")
+        customInit()
+        bindView()
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -28,19 +32,19 @@ class SelectCategoryView: UIView {
     }
     
     func customInit() {
-       if let view = Bundle.main.loadNibNamed("SelectCategoryView", owner: self, options: nil)?.first as? UIView {
+       if let view = Bundle.main.loadNibNamed("SelectCategoryHeader", owner: self, options: nil)?.first as? UIView {
            view.frame = self.bounds
            addSubview(view)
        }
     }
         
-    func getCategory() -> Driver<ListCategory> {
+    func getCategory() -> Driver<CategoryType> {
         return category.asDriver()
     }
     
     
     private func bindView() {
-        hireButton.rx.tap.bind {[weak self]  in
+        recruitButton.rx.tap.bind {[weak self]  in
             self?.category.accept(.recruit)
         }.disposed(by: disposeBag)
         
@@ -51,11 +55,11 @@ class SelectCategoryView: UIView {
         category.asDriver().drive {[weak self]  category in
             switch category {
             case .recruit:
-                self?.hireButton.setSelectedUI()
+                self?.recruitButton.setSelectedUI()
                 self?.companyButton.setUnselectedUI()
 
             case .company:
-                self?.hireButton.setUnselectedUI()
+                self?.recruitButton.setUnselectedUI()
                 self?.companyButton.setSelectedUI()
 
             }

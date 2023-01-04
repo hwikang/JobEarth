@@ -15,7 +15,8 @@ struct RecruitData: Decodable {
 
 }
 
-struct RecruitItem: Decodable {
+struct RecruitItem: Decodable, Hashable {
+   
     let id: Int
     let title: String
     let reward: Int
@@ -44,9 +45,18 @@ struct RecruitItem: Decodable {
         appeal = appealString.components(separatedBy: ", ")
         
     }
+    
+    static func == (lhs: RecruitItem, rhs: RecruitItem) -> Bool {
+        lhs.id == rhs.id
+    }
+    
 }
 
-struct Company: Decodable {
+struct Company: Decodable,Hashable {
+    static func == (lhs: Company, rhs: Company) -> Bool {
+        lhs.name == rhs.name
+    }
+    
     let name: String
     let logoPath: String
     let ratings: [Rating]
@@ -65,10 +75,12 @@ struct Company: Decodable {
         ratings = try container.decode([Rating].self, forKey: .ratings)
         
     }
+    
+   
 }
     
 
-struct Rating: Decodable {
+struct Rating: Decodable,Hashable {
     let type: String
     let rating: Float
 }
