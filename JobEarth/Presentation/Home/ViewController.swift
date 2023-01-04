@@ -59,12 +59,16 @@ class ViewController: UIViewController {
         let input = ViewModel.Input(triger: header.getCategory())
         let output = viewModel.transform(input: input)
         
-        output.recruitItems.drive{[unowned self] items in
-            let sectionItems = items.map { Item.double($0) }
-            self.snapshot.appendItems(sectionItems, toSection: Section(id: "Double"))
-            self.dataSource?.apply(self.snapshot)
+        output.recruitItems
+            .drive{[unowned self] items in
+                let sectionItems = items.map { Item.double($0) }
+                self.snapshot.appendItems(sectionItems, toSection: Section(id: "Double"))
+                self.dataSource?.apply(self.snapshot)
+            }
+            .disposed(by: disposeBag)
+        output.error.drive { error in
+            print("Error @@ \(error)")
         }.disposed(by: disposeBag)
-        
         
     }
 

@@ -120,6 +120,13 @@
 			path = RecruitCell;
 			sourceTree = "<group>";
 		};
+		BFB4CFA42965701B00F2CBBB /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
 		BFC648872962BB340030600C = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +181,7 @@
 		BFC648DB2962C22D0030600C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				BFB4CFA42965701B00F2CBBB /* Constant */,
 				BFC64912296538030030600C /* Enum */,
 				BFC648DC2962C2390030600C /* Components */,
 				BFC648FB2963D1260030600C /* Home */,

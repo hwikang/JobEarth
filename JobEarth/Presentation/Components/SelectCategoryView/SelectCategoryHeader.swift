@@ -20,7 +20,6 @@ class SelectCategoryHeader: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("Init header")
         customInit()
         bindView()
     }
@@ -42,13 +41,20 @@ class SelectCategoryHeader: UICollectionReusableView {
         return category.asDriver()
     }
     
+    private func getCurrentCategory() -> CategoryType {
+        return category.value
+    }
+    
     
     private func bindView() {
         recruitButton.rx.tap.bind {[weak self]  in
+            if self?.getCurrentCategory() == .recruit { return }
             self?.category.accept(.recruit)
         }.disposed(by: disposeBag)
         
         companyButton.rx.tap.bind {[weak self]  in
+            if self?.getCurrentCategory() == .company { return }
+
             self?.category.accept(.company)
         }.disposed(by: disposeBag)
         
