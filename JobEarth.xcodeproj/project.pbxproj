@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BFB4CFA329655EBA00F2CBBB /* AppelLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB4CFA229655EBA00F2CBBB /* AppelLabel.swift */; };
 		BFC648942962BB340030600C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648932962BB340030600C /* AppDelegate.swift */; };
 		BFC648962962BB340030600C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648952962BB340030600C /* SceneDelegate.swift */; };
 		BFC648982962BB340030600C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648972962BB340030600C /* ViewController.swift */; };
@@ -28,9 +29,10 @@
 		BFC64908296420610030600C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = BFC64907296420610030600C /* Swinject */; };
 		BFC6490A296510220030600C /* SelectCategoryHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFC64909296510220030600C /* SelectCategoryHeader.xib */; };
 		BFC6490C296511260030600C /* SelectCategoryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6490B296511260030600C /* SelectCategoryHeader.swift */; };
-		BFC6490F29651CCC0030600C /* CollectionViewDoubleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFC6490E29651CCC0030600C /* CollectionViewDoubleCell.xib */; };
-		BFC6491129651D350030600C /* CollectionViewDoubleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6491029651D350030600C /* CollectionViewDoubleCell.swift */; };
+		BFC6490F29651CCC0030600C /* RecruitCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFC6490E29651CCC0030600C /* RecruitCollectionViewCell.xib */; };
+		BFC6491129651D350030600C /* RecruitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6491029651D350030600C /* RecruitCollectionViewCell.swift */; };
 		BFC64914296538110030600C /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC64913296538110030600C /* CategoryType.swift */; };
+		BFC649172965558A0030600C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BFC649162965558A0030600C /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BFB4CFA229655EBA00F2CBBB /* AppelLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppelLabel.swift; sourceTree = "<group>"; };
 		BFC648902962BB340030600C /* JobEarth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobEarth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC648932962BB340030600C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC648952962BB340030600C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,8 +74,8 @@
 		BFC6490429641FC70030600C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		BFC64909296510220030600C /* SelectCategoryHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCategoryHeader.xib; sourceTree = "<group>"; };
 		BFC6490B296511260030600C /* SelectCategoryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryHeader.swift; sourceTree = "<group>"; };
-		BFC6490E29651CCC0030600C /* CollectionViewDoubleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewDoubleCell.xib; sourceTree = "<group>"; };
-		BFC6491029651D350030600C /* CollectionViewDoubleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDoubleCell.swift; sourceTree = "<group>"; };
+		BFC6490E29651CCC0030600C /* RecruitCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitCollectionViewCell.xib; sourceTree = "<group>"; };
+		BFC6491029651D350030600C /* RecruitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFC64913296538110030600C /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFC649172965558A0030600C /* Kingfisher in Frameworks */,
 				BFC648D72962BD170030600C /* RxRelay in Frameworks */,
 				BFC64908296420610030600C /* Swinject in Frameworks */,
 				BFC648DA2962BD5B0030600C /* RxAlamofire in Frameworks */,
@@ -106,6 +110,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BFB4CFA129655EAA00F2CBBB /* RecruitCell */ = {
+			isa = PBXGroup;
+			children = (
+				BFC6490E29651CCC0030600C /* RecruitCollectionViewCell.xib */,
+				BFC6491029651D350030600C /* RecruitCollectionViewCell.swift */,
+				BFB4CFA229655EBA00F2CBBB /* AppelLabel.swift */,
+			);
+			path = RecruitCell;
+			sourceTree = "<group>";
+		};
 		BFC648872962BB340030600C = {
 			isa = PBXGroup;
 			children = (
@@ -214,8 +228,7 @@
 		BFC648F82963C9940030600C /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				BFC6490E29651CCC0030600C /* CollectionViewDoubleCell.xib */,
-				BFC6491029651D350030600C /* CollectionViewDoubleCell.swift */,
+				BFB4CFA129655EAA00F2CBBB /* RecruitCell */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -277,6 +290,7 @@
 				BFC648D62962BD170030600C /* RxRelay */,
 				BFC648D92962BD5B0030600C /* RxAlamofire */,
 				BFC64907296420610030600C /* Swinject */,
+				BFC649162965558A0030600C /* Kingfisher */,
 			);
 			productName = JobEarth;
 			productReference = BFC648902962BB340030600C /* JobEarth.app */;
@@ -355,6 +369,7 @@
 				BFC648CB2962BCD40030600C /* XCRemoteSwiftPackageReference "RxSwift" */,
 				BFC648D82962BD5B0030600C /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				BFC64906296420610030600C /* XCRemoteSwiftPackageReference "Swinject" */,
+				BFC649152965558A0030600C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = BFC648912962BB340030600C /* Products */;
 			projectDirPath = "";
@@ -376,7 +391,7 @@
 				BFC648A02962BB350030600C /* LaunchScreen.storyboard in Resources */,
 				BFC6489D2962BB350030600C /* Assets.xcassets in Resources */,
 				BFC6489B2962BB340030600C /* Main.storyboard in Resources */,
-				BFC6490F29651CCC0030600C /* CollectionViewDoubleCell.xib in Resources */,
+				BFC6490F29651CCC0030600C /* RecruitCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,7 +420,7 @@
 				BFC648982962BB340030600C /* ViewController.swift in Sources */,
 				BFC648F02962D0CD0030600C /* UIColor.swift in Sources */,
 				BFC64914296538110030600C /* CategoryType.swift in Sources */,
-				BFC6491129651D350030600C /* CollectionViewDoubleCell.swift in Sources */,
+				BFC6491129651D350030600C /* RecruitCollectionViewCell.swift in Sources */,
 				BFC648FE2963D21D0030600C /* Network.swift in Sources */,
 				BFC6490529641FC70030600C /* ViewModel.swift in Sources */,
 				BFC648EA2962CE4B0030600C /* CategoryButton.swift in Sources */,
@@ -414,6 +429,7 @@
 				BFC649002963D51B0030600C /* RecruitNetwork.swift in Sources */,
 				BFC649032963D5C60030600C /* Recruit.swift in Sources */,
 				BFC648E22962C4E80030600C /* SearchTextField.swift in Sources */,
+				BFB4CFA329655EBA00F2CBBB /* AppelLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +803,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		BFC649152965558A0030600C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -814,6 +838,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BFC64906296420610030600C /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		BFC649162965558A0030600C /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFC649152965558A0030600C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

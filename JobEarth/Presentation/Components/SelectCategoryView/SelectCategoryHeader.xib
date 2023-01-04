@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPK-Id-z2Z" customClass="CategoryButton" customModule="JobEarth" customModuleProvider="target">
-                    <rect key="frame" x="20" y="10" width="50" height="30"/>
+                    <rect key="frame" x="0.0" y="10" width="50" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="aJF-H4-ViT"/>
                         <constraint firstAttribute="height" constant="30" id="pUE-Kt-YPW"/>
@@ -32,7 +32,7 @@
                     </buttonConfiguration>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCm-A7-AiI" customClass="CategoryButton" customModule="JobEarth" customModuleProvider="target">
-                    <rect key="frame" x="78" y="10" width="50" height="30"/>
+                    <rect key="frame" x="58" y="10" width="50" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="Fny-r4-ATG"/>
                         <constraint firstAttribute="height" constant="30" id="mGg-sa-Jpn"/>
@@ -47,7 +47,7 @@
             <viewLayoutGuide key="safeArea" id="ejF-ks-aHQ"/>
             <constraints>
                 <constraint firstItem="DCm-A7-AiI" firstAttribute="leading" secondItem="tPK-Id-z2Z" secondAttribute="trailing" constant="8" id="LeQ-Vl-4XZ"/>
-                <constraint firstItem="tPK-Id-z2Z" firstAttribute="leading" secondItem="XX1-d3-O3H" secondAttribute="leading" constant="20" id="QHN-0d-cgC"/>
+                <constraint firstItem="tPK-Id-z2Z" firstAttribute="leading" secondItem="XX1-d3-O3H" secondAttribute="leading" id="QHN-0d-cgC"/>
                 <constraint firstItem="DCm-A7-AiI" firstAttribute="centerY" secondItem="XX1-d3-O3H" secondAttribute="centerY" id="Qvw-E8-gDi"/>
                 <constraint firstItem="tPK-Id-z2Z" firstAttribute="centerY" secondItem="XX1-d3-O3H" secondAttribute="centerY" id="d3v-T1-c7p"/>
             </constraints>

@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     private func configCollectionView() {
         collectionView.register(SelectCategoryHeader.self, forSupplementaryViewOfKind: SelectCategoryHeader.id, withReuseIdentifier: SelectCategoryHeader.id)
-        collectionView.register(CollectionViewDoubleCell.self, forCellWithReuseIdentifier: CollectionViewDoubleCell.id)
+        collectionView.register(RecruitCollectionViewCell.self, forCellWithReuseIdentifier: RecruitCollectionViewCell.id)
         
         self.snapshot.appendSections([Section(id:"Double")])
         collectionView.setCollectionViewLayout(createLayout(), animated: true)
@@ -94,8 +94,8 @@ extension ViewController {
         dataSource = UICollectionViewDiffableDataSource<Section,Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier -> UICollectionViewCell? in
             switch itemIdentifier {
             case .double(let item):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewDoubleCell.id, for: indexPath)
-                print("Create Cell")
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecruitCollectionViewCell.id, for: indexPath) as? RecruitCollectionViewCell
+                cell?.configCell(item: item)
                 return cell
             default:
                 
