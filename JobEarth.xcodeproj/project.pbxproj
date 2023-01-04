@@ -19,15 +19,18 @@
 		BFC648D72962BD170030600C /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = BFC648D62962BD170030600C /* RxRelay */; };
 		BFC648DA2962BD5B0030600C /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BFC648D92962BD5B0030600C /* RxAlamofire */; };
 		BFC648E22962C4E80030600C /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648E12962C4E80030600C /* SearchTextField.swift */; };
-		BFC648E62962CB0D0030600C /* SelectCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFC648E52962CB0D0030600C /* SelectCategoryView.xib */; };
 		BFC648EA2962CE4B0030600C /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648E92962CE4B0030600C /* CategoryButton.swift */; };
 		BFC648F02962D0CD0030600C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648EF2962D0CD0030600C /* UIColor.swift */; };
-		BFC648F32962D1DE0030600C /* SelectCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648F22962D1DE0030600C /* SelectCategoryView.swift */; };
 		BFC648FE2963D21D0030600C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648FD2963D21D0030600C /* Network.swift */; };
 		BFC649002963D51B0030600C /* RecruitNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648FF2963D51B0030600C /* RecruitNetwork.swift */; };
 		BFC649032963D5C60030600C /* Recruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC649022963D5C60030600C /* Recruit.swift */; };
 		BFC6490529641FC70030600C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6490429641FC70030600C /* ViewModel.swift */; };
 		BFC64908296420610030600C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = BFC64907296420610030600C /* Swinject */; };
+		BFC6490A296510220030600C /* SelectCategoryHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFC64909296510220030600C /* SelectCategoryHeader.xib */; };
+		BFC6490C296511260030600C /* SelectCategoryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6490B296511260030600C /* SelectCategoryHeader.swift */; };
+		BFC6490F29651CCC0030600C /* CollectionViewDoubleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFC6490E29651CCC0030600C /* CollectionViewDoubleCell.xib */; };
+		BFC6491129651D350030600C /* CollectionViewDoubleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6491029651D350030600C /* CollectionViewDoubleCell.swift */; };
+		BFC64914296538110030600C /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC64913296538110030600C /* CategoryType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,14 +63,17 @@
 		BFC648AA2962BB360030600C /* JobEarthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobEarthTests.swift; sourceTree = "<group>"; };
 		BFC648B02962BB360030600C /* JobEarthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobEarthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC648E12962C4E80030600C /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
-		BFC648E52962CB0D0030600C /* SelectCategoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCategoryView.xib; sourceTree = "<group>"; };
 		BFC648E92962CE4B0030600C /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		BFC648EF2962D0CD0030600C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		BFC648F22962D1DE0030600C /* SelectCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryView.swift; sourceTree = "<group>"; };
 		BFC648FD2963D21D0030600C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		BFC648FF2963D51B0030600C /* RecruitNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitNetwork.swift; sourceTree = "<group>"; };
 		BFC649022963D5C60030600C /* Recruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruit.swift; sourceTree = "<group>"; };
 		BFC6490429641FC70030600C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		BFC64909296510220030600C /* SelectCategoryHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCategoryHeader.xib; sourceTree = "<group>"; };
+		BFC6490B296511260030600C /* SelectCategoryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryHeader.swift; sourceTree = "<group>"; };
+		BFC6490E29651CCC0030600C /* CollectionViewDoubleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewDoubleCell.xib; sourceTree = "<group>"; };
+		BFC6491029651D350030600C /* CollectionViewDoubleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDoubleCell.swift; sourceTree = "<group>"; };
+		BFC64913296538110030600C /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +160,7 @@
 		BFC648DB2962C22D0030600C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				BFC64912296538030030600C /* Enum */,
 				BFC648DC2962C2390030600C /* Components */,
 				BFC648FB2963D1260030600C /* Home */,
 				BFC648F82963C9940030600C /* CollectionView */,
@@ -190,8 +197,8 @@
 		BFC648F12962D1CF0030600C /* SelectCategoryView */ = {
 			isa = PBXGroup;
 			children = (
-				BFC648E52962CB0D0030600C /* SelectCategoryView.xib */,
-				BFC648F22962D1DE0030600C /* SelectCategoryView.swift */,
+				BFC64909296510220030600C /* SelectCategoryHeader.xib */,
+				BFC6490B296511260030600C /* SelectCategoryHeader.swift */,
 				BFC648EB2962CF460030600C /* CategoryButton */,
 			);
 			path = SelectCategoryView;
@@ -207,6 +214,8 @@
 		BFC648F82963C9940030600C /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				BFC6490E29651CCC0030600C /* CollectionViewDoubleCell.xib */,
+				BFC6491029651D350030600C /* CollectionViewDoubleCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -236,6 +245,14 @@
 				BFC649022963D5C60030600C /* Recruit.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		BFC64912296538030030600C /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				BFC64913296538110030600C /* CategoryType.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,10 +372,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFC648E62962CB0D0030600C /* SelectCategoryView.xib in Resources */,
+				BFC6490A296510220030600C /* SelectCategoryHeader.xib in Resources */,
 				BFC648A02962BB350030600C /* LaunchScreen.storyboard in Resources */,
 				BFC6489D2962BB350030600C /* Assets.xcassets in Resources */,
 				BFC6489B2962BB340030600C /* Main.storyboard in Resources */,
+				BFC6490F29651CCC0030600C /* CollectionViewDoubleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,11 +401,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFC6490C296511260030600C /* SelectCategoryHeader.swift in Sources */,
 				BFC648982962BB340030600C /* ViewController.swift in Sources */,
 				BFC648F02962D0CD0030600C /* UIColor.swift in Sources */,
+				BFC64914296538110030600C /* CategoryType.swift in Sources */,
+				BFC6491129651D350030600C /* CollectionViewDoubleCell.swift in Sources */,
 				BFC648FE2963D21D0030600C /* Network.swift in Sources */,
 				BFC6490529641FC70030600C /* ViewModel.swift in Sources */,
-				BFC648F32962D1DE0030600C /* SelectCategoryView.swift in Sources */,
 				BFC648EA2962CE4B0030600C /* CategoryButton.swift in Sources */,
 				BFC648942962BB340030600C /* AppDelegate.swift in Sources */,
 				BFC648962962BB340030600C /* SceneDelegate.swift in Sources */,
