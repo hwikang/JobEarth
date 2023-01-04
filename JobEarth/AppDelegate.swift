@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import Swinject
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    let container = Container()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        inject()
         return true
     }
 
@@ -31,6 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    func inject() {
+        container.register(ViewModel.self) { r in
+            ViewModel(network: r.resolve(RecruitNetworInterface.self)!)
+        }
+        container.register(RecruitNetworInterface.self) { _ in
+            RecruitNetwork(network: Network<RecruitData>())}
+    }
 
 }
 

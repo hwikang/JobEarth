@@ -129,7 +129,7 @@
 				BFC648DB2962C22D0030600C /* Presentation */,
 				BFC648FC2963D14A0030600C /* Network */,
 				BFC6489C2962BB350030600C /* Assets.xcassets */,
-				BFC649012963D59D0030600C /* Domain */,
+				BFC649012963D59D0030600C /* Entity */,
 				BFC6489E2962BB350030600C /* LaunchScreen.storyboard */,
 				BFC648A12962BB350030600C /* Info.plist */,
 			);
@@ -230,12 +230,12 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		BFC649012963D59D0030600C /* Domain */ = {
+		BFC649012963D59D0030600C /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				BFC649022963D5C60030600C /* Recruit.swift */,
 			);
-			path = Domain;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -8,14 +8,22 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Swinject
 
 class ViewController: UIViewController {
     private let disposeBag = DisposeBag()
+    private let container: Container? = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.container
+    }()
+    private var viewModel: ViewModel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var selectCategoryView: SelectCategoryView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = self.container?.resolve(ViewModel.self)
         bindView()
+        bindViewModel()
     }
     
     private func bindView() {
@@ -32,10 +40,10 @@ class ViewController: UIViewController {
         contentView.addSubview(view)
         
         
-        let network = RecruitNetwork(network: Network<RecruitData>())
-        network.getRecruit().bind { list in
-            print(list)
-        }
+    }
+    
+    private func bindViewModel() {
+        viewModel.getRecruits()
     }
 
 }
