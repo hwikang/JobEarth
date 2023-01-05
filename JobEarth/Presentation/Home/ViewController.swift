@@ -17,53 +17,43 @@ class ViewController: UIViewController {
         return appDelegate?.container
     }()
     private var viewModel: ViewModel!
+    @IBOutlet weak var selectCategoryView: SelectCategoryView!
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
-    private var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
-    private var selectCategoryHeader: SelectCategoryHeader? {
-        didSet {
-            bindView()
-            bindViewModel()
-
-        }
-    }
+    private var snapshot: NSDiffableDataSourceSnapshot<Section,Item>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = self.container?.resolve(ViewModel.self)
         configCollectionView()
         
-
+        bindViewModel()
     }
     
     private func configCollectionView() {
-        collectionView.register(SelectCategoryHeader.self, forSupplementaryViewOfKind: SelectCategoryHeader.id, withReuseIdentifier: SelectCategoryHeader.id)
         collectionView.register(RecruitCollectionViewCell.self, forCellWithReuseIdentifier: RecruitCollectionViewCell.id)
         
-        self.snapshot.appendSections([Section(id:"Double")])
         collectionView.setCollectionViewLayout(createLayout(), animated: true)
         
         setDatasource()
-        dataSource?.apply(snapshot)
     }
     
     private func bindView() {
-        selectCategoryHeader?.getCategory().drive { category in
-            print(category)
-        }.disposed(by: disposeBag)
-
-        
     }
     
+    
+    
     private func bindViewModel() {
-        guard let header = selectCategoryHeader else { return }
-        let input = ViewModel.Input(triger: header.getCategory())
+        let input = ViewModel.Input(triger: selectCategoryView.getCategory())
         let output = viewModel.transform(input: input)
         
         output.recruitItems
             .drive{[unowned self] items in
                 let sectionItems = items.map { Item.double($0) }
-                self.snapshot.appendItems(sectionItems, toSection: Section(id: "Double"))
-                self.dataSource?.apply(self.snapshot)
+                var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
+                snapshot.appendSections([Section.recruit])
+                snapshot.appendItems(sectionItems, toSection: Section.recruit)
+                self.dataSource?.apply(snapshot)
             }
             .disposed(by: disposeBag)
         output.error.drive { error in
@@ -78,17 +68,33 @@ extension ViewController {
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
        let config = UICollectionViewCompositionalLayoutConfiguration()
-        return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, env in
+      
+        
+        return UICollectionViewCompositionalLayout(sectionProvider: { [unowned self] sectionIndex, env in
+          
+            let currentFrame = self.collectionView.frame
+            let selectCategoryHeight = self.selectCategoryView.frame.height
+            let moveRange = currentFrame.origin.y - selectCategoryHeight
+
             switch sectionIndex {
             case 0:
-                let section = self?.createDoubleSection()
-                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(62))
+                let section = self.createDoubleSection()
+                section.visibleItemsInvalidationHandler = {   visibleItems, point, environment in
+                    if point.y > 5 {
+                        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn) {
+                            self.collectionView.frame = CGRect(x: 0, y: moveRange, width: currentFrame.width, height: currentFrame.height)
+                        }
+                    }else {
+                        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn) {
+                            self.collectionView.frame = CGRect(x: 0, y: currentFrame.origin.y, width: currentFrame.width, height: currentFrame.height)
 
-                let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: SelectCategoryHeader.id, alignment: .topLeading)
-                section?.boundarySupplementaryItems = [header]
+                        }
+
+                    }
+                }
                 return section
             default:
-                return self?.createDoubleSection()
+                return self.createDoubleSection()
 
             }
         }, configuration: config)
@@ -108,14 +114,6 @@ extension ViewController {
             }
             
         })
-        dataSource?.supplementaryViewProvider = {[weak self] ( collectionView, kind, indexPath) -> UICollectionReusableView? in
-            print("supplementaryViewProvider")
-            if indexPath.section != 0 { return nil }
-            self?.selectCategoryHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SelectCategoryHeader.id, for: indexPath) as? SelectCategoryHeader
-            
-            return self?.selectCategoryHeader
-            
-        }
     }
     
     private func createDoubleSection() -> NSCollectionLayoutSection {
@@ -133,19 +131,6 @@ extension ViewController {
     }
     
    
+    
+    
 }
-
-
-
-struct Section: Hashable {
-    let id : String
-}
-
-enum Item: Hashable {
-    case double(RecruitItem)
-    case big
-    case carousel
-}
-
-
-

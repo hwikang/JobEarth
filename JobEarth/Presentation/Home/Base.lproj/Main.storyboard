@@ -25,8 +25,15 @@
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="0.0"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNY-jk-lth" customClass="SelectCategoryView" customModule="JobEarth" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="96" width="414" height="62"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="Weh-1u-Kz1"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hQQ-eX-djr">
-                                <rect key="frame" x="0.0" y="96" width="414" height="766"/>
+                                <rect key="frame" x="0.0" y="158" width="414" height="704"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pYy-Ub-Lfy">
                                     <size key="itemSize" width="128" height="128"/>
@@ -49,17 +56,21 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="lNY-jk-lth" firstAttribute="top" secondItem="cpX-lh-TLm" secondAttribute="bottom" id="6aW-Zf-kmM"/>
                             <constraint firstItem="cpX-lh-TLm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AId-h6-Thz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cpX-lh-TLm" secondAttribute="trailing" id="BJg-Y1-tOf"/>
                             <constraint firstItem="cpX-lh-TLm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KbQ-Is-ZR7"/>
                             <constraint firstItem="hQQ-eX-djr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="No8-Sw-mR3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hQQ-eX-djr" secondAttribute="bottom" id="QAv-JI-vlz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hQQ-eX-djr" secondAttribute="trailing" id="U5R-OT-Idl"/>
-                            <constraint firstItem="hQQ-eX-djr" firstAttribute="top" secondItem="cpX-lh-TLm" secondAttribute="bottom" id="t25-dA-pU6"/>
+                            <constraint firstItem="lNY-jk-lth" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="egB-a9-qjp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lNY-jk-lth" secondAttribute="trailing" id="fZr-bv-vUp"/>
+                            <constraint firstItem="hQQ-eX-djr" firstAttribute="top" secondItem="lNY-jk-lth" secondAttribute="bottom" id="t25-dA-pU6"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="hQQ-eX-djr" id="ctE-RV-wAo"/>
+                        <outlet property="collectionView" destination="hQQ-eX-djr" id="rfL-19-tfL"/>
+                        <outlet property="selectCategoryView" destination="lNY-jk-lth" id="m1I-cf-65V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -70,6 +81,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -35,10 +35,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func inject() {
         container.register(ViewModel.self) { r in
-            ViewModel(network: r.resolve(RecruitNetworInterface.self)!)
+            ViewModel(recruitNetwork: r.resolve(RecruitNetworInterface.self)!, cellNetwork: r.resolve(CellNetworkInterface.self)!)
         }
         container.register(RecruitNetworInterface.self) { _ in
             RecruitNetwork(network: Network<RecruitData>())}
+
+        
+        container.register(CellNetworkInterface.self) { _ in
+            CellNetwork(network: Network<CellData>())
+        }
     }
 
 }

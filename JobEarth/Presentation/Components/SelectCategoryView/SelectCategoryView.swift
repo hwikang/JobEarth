@@ -1,8 +1,8 @@
 //
-//  SelectCategoryHeader.swift
+//  SelectCategoryView.swift
 //  JobEarth
 //
-//  Created by Dumveloper on 2023/01/04.
+//  Created by Dumveloper on 2023/01/05.
 //
 
 import UIKit
@@ -10,9 +10,8 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
+class SelectCategoryView: UIView {
 
-class SelectCategoryHeader: UICollectionReusableView {
-    static let id = "SelectCategoryHeader"
     private let disposeBag = DisposeBag()
     private let category = BehaviorRelay<CategoryType>(value: .recruit)
     @IBOutlet weak var recruitButton: CategoryButton!
@@ -31,7 +30,7 @@ class SelectCategoryHeader: UICollectionReusableView {
     }
     
     func customInit() {
-       if let view = Bundle.main.loadNibNamed("SelectCategoryHeader", owner: self, options: nil)?.first as? UIView {
+       if let view = Bundle.main.loadNibNamed("SelectCategoryView", owner: self, options: nil)?.first as? UIView {
            view.frame = self.bounds
            addSubview(view)
        }
