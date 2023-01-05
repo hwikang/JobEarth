@@ -10,11 +10,16 @@ import RxCocoa
 import RxSwift
 
 class ViewModel {
-    private let network: RecruitNetworInterface
+    private let recruitNetwork: RecruitNetworInterface
+    private let cellNetwork: CellNetworkInterface
     private let disposebag = DisposeBag()
     private let errorMessage = PublishRelay<String>()
-    init(network:RecruitNetworInterface) {
-        self.network = network
+    init(recruitNetwork:RecruitNetworInterface, cellNetwork:CellNetworkInterface) {
+        self.recruitNetwork = recruitNetwork
+        self.cellNetwork = cellNetwork
+        
+        
+        getCells()
     }
     
     struct Input {
@@ -29,6 +34,7 @@ class ViewModel {
     func transform(input:Input) ->Output {
         
         let recruitItems = input.triger.flatMapLatest { type -> Driver<[RecruitItem]>  in
+
             return self.getRecruits()
                 .asDriver(onErrorJustReturn: [])
         }
@@ -37,11 +43,24 @@ class ViewModel {
     }
     
     private func getRecruits() -> Observable<[RecruitItem]>{
-        return network.getRecruit()
+        return recruitNetwork.getRecruit()
             .catch({[weak self] error in
                 self?.errorMessage.accept(error.localizedDescription)
                 return Observable.just(RecruitData(recruitItems: []))
             })
             .map { $0.recruitItems }
+    }
+    
+    private func getCells()  {
+        print("getCells")
+        return cellNetwork.getCell()
+            .catch({ error in
+                print(error)
+                return Observable.just(CellData(cellItems: []))
+            })
+            .bind { data in
+            
+            print(data)
+            }.disposed(by: disposebag)
     }
 }
