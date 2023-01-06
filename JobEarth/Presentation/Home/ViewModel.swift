@@ -19,27 +19,33 @@ class ViewModel {
         self.cellNetwork = cellNetwork
         
         
-        getCells()
+//        getCells()
     }
     
     struct Input {
-        var triger: Driver<CategoryType>
+        var recruitTriger: Driver<Void>
+        var cellTriger: Driver<Void>
+
     }
     
     struct Output {
         var recruitItems: Driver<[RecruitItem]>
+        var cellItems: Driver<[CellItem]>
         var error: Driver<String>
     }
     
     func transform(input:Input) ->Output {
-        
-        let recruitItems = input.triger.flatMapLatest { type -> Driver<[RecruitItem]>  in
-
+        let recruitItems = input.recruitTriger.flatMapLatest { _ -> Driver<[RecruitItem]>  in
             return self.getRecruits()
                 .asDriver(onErrorJustReturn: [])
         }
         
-        return Output(recruitItems: recruitItems, error: errorMessage.asDriver(onErrorJustReturn: ""))
+        let cellItems = input.cellTriger.flatMapLatest { _ -> Driver<[CellItem]>  in
+            return self.getCells()
+                .asDriver(onErrorJustReturn: [])
+        }
+        
+        return Output(recruitItems: recruitItems, cellItems: cellItems, error: errorMessage.asDriver(onErrorJustReturn: ""))
     }
     
     private func getRecruits() -> Observable<[RecruitItem]>{
@@ -51,16 +57,13 @@ class ViewModel {
             .map { $0.recruitItems }
     }
     
-    private func getCells()  {
+    private func getCells() -> Observable<[CellItem]> {
         print("getCells")
         return cellNetwork.getCell()
-            .catch({ error in
-                print(error)
+            .catch({ [weak self] error in
+                self?.errorMessage.accept(error.localizedDescription)
                 return Observable.just(CellData(cellItems: []))
             })
-            .bind { data in
-            
-            print(data)
-            }.disposed(by: disposebag)
+            .map{ $0.cellItems }
     }
 }

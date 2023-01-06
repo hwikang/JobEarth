@@ -11,16 +11,19 @@ import Foundation
 //    let id : String
 //}
 
-enum Section {
+enum Section: Hashable {
     case recruit
-    case cellCompany
+    case cellCompany(String)
     case cellHorizontal
 }
 
+
+
+
 enum Item: Hashable {
-    case double(RecruitItem)
-    case big
-    case carousel
+    case recruit(RecruitItem)
+    case cellCompany(CellItem)
+    case cellHorizontal
 }
 
 

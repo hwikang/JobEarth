@@ -89,7 +89,20 @@ struct CellItem: Decodable, Hashable {
     }
 
     static func == (lhs: CellItem, rhs: CellItem) -> Bool {
-        lhs.cellType == rhs.cellType
+        if lhs.cellType == rhs.cellType {
+            switch lhs.cellType {
+            case .company:
+                return lhs.name == rhs.name
+            case .horizontalTheme:
+                return lhs.sectionTitle == rhs.sectionTitle
+            }
+        }
+        
+        return false
+        
+        
     }
 
 }
+
+
