@@ -69,7 +69,6 @@ class CompanyCollectionViewCell: UICollectionViewCell {
         interviewQuestion.sizeToFit()
         
         
-        print("Size \(self.intrinsicContentSize)")
     }
     
 }

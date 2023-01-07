@@ -21,6 +21,7 @@ struct CellData: Decodable {
 enum CellItemType {
     case company
     case horizontalTheme
+    case none
     
 }
 
@@ -61,9 +62,11 @@ struct CellItem: Decodable, Hashable {
         switch cellTypeString {
         case "CELL_TYPE_COMPANY":
             cellType = .company
+        case "CELL_TYPE_HORIZONTAL_THEME":
+            cellType = .horizontalTheme
             
         default:
-            cellType = .horizontalTheme
+            cellType = .none
             
         }
         logoPath = try? container.decode(String.self, forKey: .logoPath)
@@ -79,15 +82,6 @@ struct CellItem: Decodable, Hashable {
         recommendRecruit = try? container.decode([RecruitItem].self, forKey: .recommendRecruit)
     }
 
-    private func setCellType(type: String) -> CellItemType{
-        switch type {
-        case "CELL_TYPE_COMPANY":
-            return .company
-        default:
-            return .horizontalTheme
-        }
-    }
-
     static func == (lhs: CellItem, rhs: CellItem) -> Bool {
         if lhs.cellType == rhs.cellType {
             switch lhs.cellType {
@@ -95,7 +89,10 @@ struct CellItem: Decodable, Hashable {
                 return lhs.name == rhs.name
             case .horizontalTheme:
                 return lhs.sectionTitle == rhs.sectionTitle
+            default:
+                return false
             }
+       
         }
         
         return false

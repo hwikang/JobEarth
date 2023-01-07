@@ -36,6 +36,7 @@ class ViewController: UIViewController {
     private func configCollectionView() {
         collectionView.register(RecruitCollectionViewCell.self, forCellWithReuseIdentifier: RecruitCollectionViewCell.id)
         collectionView.register(CompanyCollectionViewCell.self, forCellWithReuseIdentifier: CompanyCollectionViewCell.id)
+        collectionView.register(UINib(nibName:"HorizontalHeader", bundle: nil), forSupplementaryViewOfKind: "HorizontalHeader", withReuseIdentifier: HorizontalHeader.id)
 
         setDatasource()
     }
@@ -70,10 +71,12 @@ class ViewController: UIViewController {
                 var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
                 
                 items.forEach { item in
-                    cellTypes.append(item.cellType)
+                   
                     switch item.cellType {
                     case .company:
                         if let name = item.name {
+                            cellTypes.append(item.cellType)
+
                             let sectionItem = Item.cellCompany(item)
 
                             snapshot.appendSections([Section.cellCompany(name)])
@@ -81,8 +84,19 @@ class ViewController: UIViewController {
                             snapshot.appendItems([sectionItem], toSection: Section.cellCompany(name))
                         }
                     case .horizontalTheme:
-                        print("Horizontal")
+                        if let title = item.sectionTitle, let recommendRecruit = item.recommendRecruit {
+                            cellTypes.append(item.cellType)
+
+                            let section = Section.cellHorizontal(title)
+                            snapshot.appendSections([section])
+                            let items = recommendRecruit.map { Item.cellHorizontal($0)}
+                            snapshot.appendItems(items, toSection: section)
+
+                        }
+                    default:
+                        print("None Type")
                     }
+               
                 }
                 print("Apply")
                 self.dataSource?.apply(snapshot)
@@ -118,7 +132,6 @@ extension ViewController {
     
     private func setDatasource() {
         dataSource = UICollectionViewDiffableDataSource<Section,Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier -> UICollectionViewCell? in
-            print("Cell Provider \(itemIdentifier)")
             switch itemIdentifier {
             case .recruit(let item):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecruitCollectionViewCell.id, for: indexPath) as? RecruitCollectionViewCell
@@ -128,13 +141,26 @@ extension ViewController {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyCollectionViewCell.id, for: indexPath) as? CompanyCollectionViewCell
                 cell?.configCell(item: item)
                 return cell
-            default:
-                
-                return UICollectionViewCell()
+            case .cellHorizontal(let item):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecruitCollectionViewCell.id, for: indexPath) as? RecruitCollectionViewCell
+                cell?.configCell(item: item)
+                return cell
+            
 
             }
             
         })
+        
+        dataSource?.supplementaryViewProvider = {[weak self] (collectionView, kind, indexPath) -> UICollectionReusableView in
+            print("Heder provider \(kind)")
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HorizontalHeader.id, for: indexPath) as? HorizontalHeader else { fatalError()}
+            
+            let currentSectionData = self?.dataSource?.sectionIdentifier(for: indexPath.section)
+            if case let .cellHorizontal(title) = currentSectionData {
+                header.configure(title: title)
+            }
+            return header
+        }
     }
     private func createCompanyLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -148,29 +174,46 @@ extension ViewController {
                        let section = self.createCellCompanySection()
                        return section
                 case .horizontalTheme:
-                       let section = self.createCellCompanySection()
-                       return section
-                    
+                    let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
+                    let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "HorizontalHeader", alignment: .topLeading)
+                   let section = self.createCellHorizontalSection()
+                    section.boundarySupplementaryItems = [header]
+
+                   return section
+                default:
+                    return self.createCellCompanySection()
                 }
             }
             return self.createCellCompanySection()
-//
-//
         },configuration: config)
     }
                                                    
-   private func createCellCompanySection() -> NSCollectionLayoutSection {
-       let hightDimension = NSCollectionLayoutDimension.estimated(400)
-       let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: hightDimension)
-       let item = NSCollectionLayoutItem(layoutSize: itemSize)
-       let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: hightDimension)
+    private func createCellCompanySection() -> NSCollectionLayoutSection {
+        let hightDimension = NSCollectionLayoutDimension.estimated(400)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: hightDimension)
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: hightDimension)
 
-       let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-       let section = NSCollectionLayoutSection(group: group)
-       
-       return section
-   }
-   
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        
+        return section
+    }
+    private func createCellHorizontalSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.426), heightDimension: .absolute(246))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 12.0
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20)
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
+    
   
     private func createRecruitLayout() -> UICollectionViewCompositionalLayout {
        let config = UICollectionViewCompositionalLayoutConfiguration()

@@ -17,6 +17,8 @@
 		BFB81D2F2967B75A00F187B7 /* CompanyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D2E2967B75A00F187B7 /* CompanyCollectionViewCell.swift */; };
 		BFB81D37296801D600F187B7 /* TestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB81D36296801D600F187B7 /* TestCell.xib */; };
 		BFB81D39296801FA00F187B7 /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D38296801FA00F187B7 /* TestCell.swift */; };
+		BFB81D3F29681F3000F187B7 /* HorizontalHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB81D3E29681F3000F187B7 /* HorizontalHeader.xib */; };
+		BFB81D4129681F9A00F187B7 /* HorizontalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D4029681F9A00F187B7 /* HorizontalHeader.swift */; };
 		BFC648942962BB340030600C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648932962BB340030600C /* AppDelegate.swift */; };
 		BFC648962962BB340030600C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648952962BB340030600C /* SceneDelegate.swift */; };
 		BFC648982962BB340030600C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648972962BB340030600C /* ViewController.swift */; };
@@ -70,6 +72,8 @@
 		BFB81D2E2967B75A00F187B7 /* CompanyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFB81D36296801D600F187B7 /* TestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestCell.xib; sourceTree = "<group>"; };
 		BFB81D38296801FA00F187B7 /* TestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
+		BFB81D3E29681F3000F187B7 /* HorizontalHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalHeader.xib; sourceTree = "<group>"; };
+		BFB81D4029681F9A00F187B7 /* HorizontalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeader.swift; sourceTree = "<group>"; };
 		BFC648902962BB340030600C /* JobEarth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobEarth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC648932962BB340030600C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC648952962BB340030600C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +152,15 @@
 				BFB81D2E2967B75A00F187B7 /* CompanyCollectionViewCell.swift */,
 			);
 			path = CompanyCell;
+			sourceTree = "<group>";
+		};
+		BFB81D3D29681EFF00F187B7 /* HorizontalHeader */ = {
+			isa = PBXGroup;
+			children = (
+				BFB81D3E29681F3000F187B7 /* HorizontalHeader.xib */,
+				BFB81D4029681F9A00F187B7 /* HorizontalHeader.swift */,
+			);
+			path = HorizontalHeader;
 			sourceTree = "<group>";
 		};
 		BFC648872962BB340030600C = {
@@ -254,6 +267,7 @@
 				BFB81D292966D75700F187B7 /* Section.swift */,
 				BFB81D36296801D600F187B7 /* TestCell.xib */,
 				BFB81D38296801FA00F187B7 /* TestCell.swift */,
+				BFB81D3D29681EFF00F187B7 /* HorizontalHeader */,
 				BFB81D2B2967B70100F187B7 /* CompanyCell */,
 				BFB4CFA129655EAA00F2CBBB /* RecruitCell */,
 			);
@@ -416,6 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFB81D3F29681F3000F187B7 /* HorizontalHeader.xib in Resources */,
 				BFB81D2D2967B74600F187B7 /* CompanyCollectionViewCell.xib in Resources */,
 				BFB81D232966C08E00F187B7 /* SelectCategoryView.xib in Resources */,
 				BFC648A02962BB350030600C /* LaunchScreen.storyboard in Resources */,
@@ -452,6 +467,7 @@
 				BFC648982962BB340030600C /* ViewController.swift in Sources */,
 				BFC648F02962D0CD0030600C /* UIColor.swift in Sources */,
 				BFC64914296538110030600C /* CategoryType.swift in Sources */,
+				BFB81D4129681F9A00F187B7 /* HorizontalHeader.swift in Sources */,
 				BFC6491129651D350030600C /* RecruitCollectionViewCell.swift in Sources */,
 				BFC648FE2963D21D0030600C /* Network.swift in Sources */,
 				BFC6490529641FC70030600C /* ViewModel.swift in Sources */,

@@ -14,7 +14,7 @@ import Foundation
 enum Section: Hashable {
     case recruit
     case cellCompany(String)
-    case cellHorizontal
+    case cellHorizontal(String)
 }
 
 
@@ -23,7 +23,7 @@ enum Section: Hashable {
 enum Item: Hashable {
     case recruit(RecruitItem)
     case cellCompany(CellItem)
-    case cellHorizontal
+    case cellHorizontal(RecruitItem)
 }
 
 
