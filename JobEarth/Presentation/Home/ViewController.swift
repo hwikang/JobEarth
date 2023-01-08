@@ -152,27 +152,28 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController {
+extension ViewController: UICollectionViewDelegate {
     
     private func setDatasource() {
-        dataSource = UICollectionViewDiffableDataSource<Section,Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section,Item>(collectionView: collectionView, cellProvider: {[weak self] collectionView, indexPath, itemIdentifier -> UICollectionViewCell? in
             switch itemIdentifier {
-            case .recruit(let item):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecruitCollectionViewCell.id, for: indexPath) as? RecruitCollectionViewCell
-                cell?.configCell(item: item)
-                return cell
+            case .recruit(let item), .cellHorizontal(let item):
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecruitCollectionViewCell.id, for: indexPath) as? RecruitCollectionViewCell {
+                    cell.configCell(item: item)
+                    self?.addTapEventToRecruitCell(cell: cell, item: item)
+                    return cell
+                }
+                
             case .cellCompany(let item):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyCollectionViewCell.id, for: indexPath) as? CompanyCollectionViewCell
-                cell?.configCell(item: item)
-                return cell
-            case .cellHorizontal(let item):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecruitCollectionViewCell.id, for: indexPath) as? RecruitCollectionViewCell
-                cell?.configCell(item: item)
-                return cell
-            
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyCollectionViewCell.id, for: indexPath) as? CompanyCollectionViewCell {
+                    cell.configCell(item: item)
+                    self?.addTapEventToCompanyCell(cell: cell, item: item)
+                    return cell
 
+                }
+               
             }
-            
+            return UICollectionViewCell()
         })
         
         dataSource?.supplementaryViewProvider = {[weak self] (collectionView, kind, indexPath) -> UICollectionReusableView in
@@ -216,6 +217,7 @@ extension ViewController {
            
             let section = LayoutSectionManager.createRecruitSection()
             self.addScrollEventToSection(section: section)
+        
             return section
             
         }, configuration: config)
@@ -239,5 +241,24 @@ extension ViewController {
         self.collectionTopConstraint.constant = offset
     }
     
+    private func addTapEventToRecruitCell(cell: RecruitCollectionViewCell, item: RecruitItem) {
+      
+        let tapGesture = UITapGestureRecognizer()
+        cell.addGestureRecognizer(tapGesture)
+
+        tapGesture.rx.event.bind{[weak self] recognizer in
+            let vc = DetailViewController.initiate(title: item.title, imageUrl: item.imageUrl)
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: disposeBag)
+    }
+    private func addTapEventToCompanyCell(cell: CompanyCollectionViewCell, item: CellItem) {
+      
+        let tapGesture = UITapGestureRecognizer()
+        cell.addGestureRecognizer(tapGesture)
+
+        tapGesture.rx.event.bind{ recognizer in
+            print(item)
+        }.disposed(by: disposeBag)
+    }
 }
 

@@ -41,6 +41,7 @@ class RecruitCollectionViewCell: UICollectionViewCell {
         mainImage.layer.cornerRadius = 8
         mainImage.kf.indicatorType = .activity
         mainImage.contentMode = .scaleAspectFill
+        
     }
     
     
@@ -57,6 +58,7 @@ class RecruitCollectionViewCell: UICollectionViewCell {
         addAppalLabels(appeals: item.appeal)
         
     }
+   
     
     private func getRewardString(reward: Int) -> String {
         let format = NumberFormatter()

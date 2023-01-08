@@ -22,6 +22,8 @@
 		BFB81D45296AEB2600F187B7 /* LayoutSectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D44296AEB2600F187B7 /* LayoutSectionManager.swift */; };
 		BFB81D48296AEBA400F187B7 /* SearchTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB81D47296AEBA400F187B7 /* SearchTextView.xib */; };
 		BFB81D4A296AEC9000F187B7 /* SearchTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D49296AEC9000F187B7 /* SearchTextView.swift */; };
+		BFB81D4D296B16D900F187B7 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB81D4C296B16D900F187B7 /* Detail.storyboard */; };
+		BFB81D4F296B16E800F187B7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D4E296B16E800F187B7 /* DetailViewController.swift */; };
 		BFC648942962BB340030600C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648932962BB340030600C /* AppDelegate.swift */; };
 		BFC648962962BB340030600C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648952962BB340030600C /* SceneDelegate.swift */; };
 		BFC648982962BB340030600C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648972962BB340030600C /* ViewController.swift */; };
@@ -79,6 +81,8 @@
 		BFB81D44296AEB2600F187B7 /* LayoutSectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutSectionManager.swift; sourceTree = "<group>"; };
 		BFB81D47296AEBA400F187B7 /* SearchTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTextView.xib; sourceTree = "<group>"; };
 		BFB81D49296AEC9000F187B7 /* SearchTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextView.swift; sourceTree = "<group>"; };
+		BFB81D4C296B16D900F187B7 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		BFB81D4E296B16E800F187B7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BFC648902962BB340030600C /* JobEarth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobEarth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC648932962BB340030600C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC648952962BB340030600C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +173,15 @@
 			path = SearchTextView;
 			sourceTree = "<group>";
 		};
+		BFB81D4B296B16B600F187B7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				BFB81D4C296B16D900F187B7 /* Detail.storyboard */,
+				BFB81D4E296B16E800F187B7 /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		BFC648872962BB340030600C = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +239,7 @@
 				BFC64912296538030030600C /* Enum */,
 				BFC648DC2962C2390030600C /* Components */,
 				BFC648FB2963D1260030600C /* Home */,
+				BFB81D4B296B16B600F187B7 /* Detail */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -439,6 +453,7 @@
 				BFB81D48296AEBA400F187B7 /* SearchTextView.xib in Resources */,
 				BFB81D3F29681F3000F187B7 /* HorizontalHeader.xib in Resources */,
 				BFB81D2D2967B74600F187B7 /* CompanyCollectionViewCell.xib in Resources */,
+				BFB81D4D296B16D900F187B7 /* Detail.storyboard in Resources */,
 				BFB81D232966C08E00F187B7 /* SelectCategoryView.xib in Resources */,
 				BFC648A02962BB350030600C /* LaunchScreen.storyboard in Resources */,
 				BFC6489D2962BB350030600C /* Assets.xcassets in Resources */,
@@ -480,6 +495,7 @@
 				BFC6490529641FC70030600C /* ViewModel.swift in Sources */,
 				BFC648EA2962CE4B0030600C /* CategoryButton.swift in Sources */,
 				BFC648942962BB340030600C /* AppDelegate.swift in Sources */,
+				BFB81D4F296B16E800F187B7 /* DetailViewController.swift in Sources */,
 				BFB81D45296AEB2600F187B7 /* LayoutSectionManager.swift in Sources */,
 				BFC648962962BB340030600C /* SceneDelegate.swift in Sources */,
 				BFC649002963D51B0030600C /* RecruitNetwork.swift in Sources */,

@@ -21,7 +21,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SectionTItle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCY-pm-1yz">
-                    <rect key="frame" x="0.0" y="21" width="414" height="29"/>
+                    <rect key="frame" x="20" y="21" width="394" height="29"/>
                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -30,7 +30,7 @@
             <viewLayoutGuide key="safeArea" id="jfO-uV-eaG"/>
             <constraints>
                 <constraint firstItem="jfO-uV-eaG" firstAttribute="trailing" secondItem="F6t-gT-2xP" secondAttribute="trailing" id="8ln-dZ-5mh"/>
-                <constraint firstItem="CCY-pm-1yz" firstAttribute="leading" secondItem="aJR-I8-juD" secondAttribute="leading" id="GjR-7Q-axd"/>
+                <constraint firstItem="CCY-pm-1yz" firstAttribute="leading" secondItem="aJR-I8-juD" secondAttribute="leading" constant="20" id="GjR-7Q-axd"/>
                 <constraint firstItem="jfO-uV-eaG" firstAttribute="trailing" secondItem="CCY-pm-1yz" secondAttribute="trailing" id="UNC-pN-6R3"/>
                 <constraint firstItem="F6t-gT-2xP" firstAttribute="leading" secondItem="jfO-uV-eaG" secondAttribute="leading" id="goJ-0n-3sg"/>
                 <constraint firstItem="F6t-gT-2xP" firstAttribute="top" secondItem="aJR-I8-juD" secondAttribute="top" id="hGq-Jm-ASv"/>
