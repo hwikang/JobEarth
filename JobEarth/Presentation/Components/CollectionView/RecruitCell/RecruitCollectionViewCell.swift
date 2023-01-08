@@ -68,7 +68,6 @@ class RecruitCollectionViewCell: UICollectionViewCell {
     
     private func getBestRating(ratings: [Rating]) -> Rating? {
         let sorted = ratings.sorted{$0.rating>$1.rating}
-        print(sorted)
         return sorted.first
     }
     

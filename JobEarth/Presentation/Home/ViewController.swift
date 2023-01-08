@@ -25,6 +25,9 @@ class ViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section,Item>?
     private var cellTypes: [CellItemType] = []
+    
+    @IBOutlet weak var collectionTopConstraint: NSLayoutConstraint!
+    var test: NSLayoutConstraint?
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = self.container?.resolve(ViewModel.self)
@@ -166,25 +169,21 @@ extension ViewController {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 20.0
         return UICollectionViewCompositionalLayout(sectionProvider: { [unowned self] sectionIndex, env in
-            print("Call sectionProvider \(cellTypes)")
+            var section: NSCollectionLayoutSection = self.createCellCompanySection()
             if !cellTypes.isEmpty {
                 let cell = cellTypes[sectionIndex]
-                switch cell {
-                case .company:
-                       let section = self.createCellCompanySection()
-                       return section
-                case .horizontalTheme:
+                
+                if cell == .horizontalTheme {
                     let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
                     let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "HorizontalHeader", alignment: .topLeading)
-                   let section = self.createCellHorizontalSection()
+                    section = self.createCellHorizontalSection()
                     section.boundarySupplementaryItems = [header]
-
-                   return section
-                default:
-                    return self.createCellCompanySection()
                 }
             }
-            return self.createCellCompanySection()
+            self.addScrollEventToSection(section: section)
+
+
+            return section
         },configuration: config)
     }
                                                    
@@ -220,22 +219,10 @@ extension ViewController {
       
         
         return UICollectionViewCompositionalLayout(sectionProvider: { [unowned self] sectionIndex, env in
-          print("Call Section Provider \(sectionIndex)")
-            let currentFrame = self.collectionView.frame
-            let selectCategoryHeight = self.selectCategoryView.frame.height
-            let moveRange = currentFrame.origin.y - selectCategoryHeight
-
+           
+            
             let section = self.createRecruitSection()
-            section.visibleItemsInvalidationHandler = {   visibleItems, point, environment in
-                if point.y > 5 {
-                    UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn) {
-                        self.collectionView.frame = CGRect(x: 0, y: moveRange, width: currentFrame.width, height: currentFrame.height)
-                    }
-                }else {
-                    self.collectionView.frame = CGRect(x: 0, y: currentFrame.origin.y, width: currentFrame.width, height: currentFrame.height)
-
-                }
-            }
+            self.addScrollEventToSection(section: section)
             return section
             
         }, configuration: config)
@@ -254,8 +241,23 @@ extension ViewController {
         return section
         
     }
+    private func addScrollEventToSection(section: NSCollectionLayoutSection?) {
+        let selectCategoryHeight = self.selectCategoryView.frame.height
+
+        section?.visibleItemsInvalidationHandler = {[weak self]   visibleItems, point, environment in
+            print(point.y)
+            if point.y > 5 {
+                self?.changeCollectionViewConstraint(offset: -selectCategoryHeight)
+
+            }else {
+                self?.changeCollectionViewConstraint(offset: 0)
+
+            }
+        }
+    }
     
-   
-    
+    private func changeCollectionViewConstraint(offset: CGFloat) {
+        self.collectionTopConstraint.constant = offset
+    }
     
 }
