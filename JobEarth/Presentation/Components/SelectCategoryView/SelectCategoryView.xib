@@ -20,28 +20,27 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Znk-yh-9e9" customClass="CategoryButton" customModule="JobEarth" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="16" width="50" height="30"/>
+                    <rect key="frame" x="20" y="16" width="50" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="GIi-r5-frl"/>
                         <constraint firstAttribute="height" constant="30" id="xTr-rQ-M2f"/>
                     </constraints>
-                    <color key="tintColor" systemColor="labelColor"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="채용">
-                        <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
-                    </buttonConfiguration>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="채용"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deo-cw-EHe" customClass="CategoryButton" customModule="JobEarth" customModuleProvider="target">
-                    <rect key="frame" x="58" y="16" width="50" height="30"/>
+                    <rect key="frame" x="78" y="16" width="50" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="IjT-Ga-kPo"/>
                         <constraint firstAttribute="height" constant="30" id="aHW-7c-Vwe"/>
                     </constraints>
-                    <color key="tintColor" systemColor="labelColor"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="기업">
-                        <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
-                    </buttonConfiguration>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="기업"/>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="QyM-xP-ICo"/>
@@ -49,7 +48,7 @@
             <constraints>
                 <constraint firstItem="deo-cw-EHe" firstAttribute="centerY" secondItem="Fo7-qS-HfS" secondAttribute="centerY" id="Etm-9C-DuF"/>
                 <constraint firstItem="Znk-yh-9e9" firstAttribute="centerY" secondItem="Fo7-qS-HfS" secondAttribute="centerY" id="XtR-RR-7Or"/>
-                <constraint firstItem="Znk-yh-9e9" firstAttribute="leading" secondItem="Fo7-qS-HfS" secondAttribute="leading" id="hBu-XX-JB4"/>
+                <constraint firstItem="Znk-yh-9e9" firstAttribute="leading" secondItem="Fo7-qS-HfS" secondAttribute="leading" constant="20" id="Zt5-JK-HvA"/>
                 <constraint firstItem="deo-cw-EHe" firstAttribute="leading" secondItem="Znk-yh-9e9" secondAttribute="trailing" constant="8" id="xtz-XK-Uc6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -57,9 +56,6 @@
         </view>
     </objects>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
