@@ -19,6 +19,9 @@
 		BFB81D39296801FA00F187B7 /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D38296801FA00F187B7 /* TestCell.swift */; };
 		BFB81D3F29681F3000F187B7 /* HorizontalHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB81D3E29681F3000F187B7 /* HorizontalHeader.xib */; };
 		BFB81D4129681F9A00F187B7 /* HorizontalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D4029681F9A00F187B7 /* HorizontalHeader.swift */; };
+		BFB81D45296AEB2600F187B7 /* LayoutSectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D44296AEB2600F187B7 /* LayoutSectionManager.swift */; };
+		BFB81D48296AEBA400F187B7 /* SearchTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB81D47296AEBA400F187B7 /* SearchTextView.xib */; };
+		BFB81D4A296AEC9000F187B7 /* SearchTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D49296AEC9000F187B7 /* SearchTextView.swift */; };
 		BFC648942962BB340030600C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648932962BB340030600C /* AppDelegate.swift */; };
 		BFC648962962BB340030600C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648952962BB340030600C /* SceneDelegate.swift */; };
 		BFC648982962BB340030600C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648972962BB340030600C /* ViewController.swift */; };
@@ -30,7 +33,6 @@
 		BFC648D52962BD170030600C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BFC648D42962BD170030600C /* RxCocoa */; };
 		BFC648D72962BD170030600C /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = BFC648D62962BD170030600C /* RxRelay */; };
 		BFC648DA2962BD5B0030600C /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BFC648D92962BD5B0030600C /* RxAlamofire */; };
-		BFC648E22962C4E80030600C /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648E12962C4E80030600C /* SearchTextField.swift */; };
 		BFC648EA2962CE4B0030600C /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648E92962CE4B0030600C /* CategoryButton.swift */; };
 		BFC648F02962D0CD0030600C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648EF2962D0CD0030600C /* UIColor.swift */; };
 		BFC648FE2963D21D0030600C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648FD2963D21D0030600C /* Network.swift */; };
@@ -74,6 +76,9 @@
 		BFB81D38296801FA00F187B7 /* TestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
 		BFB81D3E29681F3000F187B7 /* HorizontalHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalHeader.xib; sourceTree = "<group>"; };
 		BFB81D4029681F9A00F187B7 /* HorizontalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeader.swift; sourceTree = "<group>"; };
+		BFB81D44296AEB2600F187B7 /* LayoutSectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutSectionManager.swift; sourceTree = "<group>"; };
+		BFB81D47296AEBA400F187B7 /* SearchTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTextView.xib; sourceTree = "<group>"; };
+		BFB81D49296AEC9000F187B7 /* SearchTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextView.swift; sourceTree = "<group>"; };
 		BFC648902962BB340030600C /* JobEarth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobEarth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC648932962BB340030600C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC648952962BB340030600C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +90,6 @@
 		BFC648A62962BB360030600C /* JobEarthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobEarthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC648AA2962BB360030600C /* JobEarthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobEarthTests.swift; sourceTree = "<group>"; };
 		BFC648B02962BB360030600C /* JobEarthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobEarthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFC648E12962C4E80030600C /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		BFC648E92962CE4B0030600C /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		BFC648EF2962D0CD0030600C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		BFC648FD2963D21D0030600C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -138,13 +142,6 @@
 			path = RecruitCell;
 			sourceTree = "<group>";
 		};
-		BFB4CFA42965701B00F2CBBB /* Constant */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Constant;
-			sourceTree = "<group>";
-		};
 		BFB81D2B2967B70100F187B7 /* CompanyCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +158,15 @@
 				BFB81D4029681F9A00F187B7 /* HorizontalHeader.swift */,
 			);
 			path = HorizontalHeader;
+			sourceTree = "<group>";
+		};
+		BFB81D46296AEB9000F187B7 /* SearchTextView */ = {
+			isa = PBXGroup;
+			children = (
+				BFB81D47296AEBA400F187B7 /* SearchTextView.xib */,
+				BFB81D49296AEC9000F187B7 /* SearchTextView.swift */,
+			);
+			path = SearchTextView;
 			sourceTree = "<group>";
 		};
 		BFC648872962BB340030600C = {
@@ -217,7 +223,6 @@
 		BFC648DB2962C22D0030600C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				BFB4CFA42965701B00F2CBBB /* Constant */,
 				BFC64912296538030030600C /* Enum */,
 				BFC648DC2962C2390030600C /* Components */,
 				BFC648FB2963D1260030600C /* Home */,
@@ -228,7 +233,7 @@
 		BFC648DC2962C2390030600C /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				BFC648E12962C4E80030600C /* SearchTextField.swift */,
+				BFB81D46296AEB9000F187B7 /* SearchTextView */,
 				BFC648F82963C9940030600C /* CollectionView */,
 				BFC648F12962D1CF0030600C /* SelectCategoryView */,
 			);
@@ -278,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				BFC648972962BB340030600C /* ViewController.swift */,
+				BFB81D44296AEB2600F187B7 /* LayoutSectionManager.swift */,
 				BFC6490429641FC70030600C /* ViewModel.swift */,
 				BFC648992962BB340030600C /* Main.storyboard */,
 			);
@@ -430,6 +436,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFB81D48296AEBA400F187B7 /* SearchTextView.xib in Resources */,
 				BFB81D3F29681F3000F187B7 /* HorizontalHeader.xib in Resources */,
 				BFB81D2D2967B74600F187B7 /* CompanyCollectionViewCell.xib in Resources */,
 				BFB81D232966C08E00F187B7 /* SelectCategoryView.xib in Resources */,
@@ -473,13 +480,14 @@
 				BFC6490529641FC70030600C /* ViewModel.swift in Sources */,
 				BFC648EA2962CE4B0030600C /* CategoryButton.swift in Sources */,
 				BFC648942962BB340030600C /* AppDelegate.swift in Sources */,
+				BFB81D45296AEB2600F187B7 /* LayoutSectionManager.swift in Sources */,
 				BFC648962962BB340030600C /* SceneDelegate.swift in Sources */,
 				BFC649002963D51B0030600C /* RecruitNetwork.swift in Sources */,
 				BFC649032963D5C60030600C /* Recruit.swift in Sources */,
 				BFB81D282966C8B800F187B7 /* Cell.swift in Sources */,
 				BFB81D2F2967B75A00F187B7 /* CompanyCollectionViewCell.swift in Sources */,
 				BFB81D212966C08200F187B7 /* SelectCategoryView.swift in Sources */,
-				BFC648E22962C4E80030600C /* SearchTextField.swift in Sources */,
+				BFB81D4A296AEC9000F187B7 /* SearchTextView.swift in Sources */,
 				BFB4CFA329655EBA00F2CBBB /* AppelLabel.swift in Sources */,
 				BFB81D39296801FA00F187B7 /* TestCell.swift in Sources */,
 			);

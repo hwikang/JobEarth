@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         collectionView.register(RecruitCollectionViewCell.self, forCellWithReuseIdentifier: RecruitCollectionViewCell.id)
         collectionView.register(CompanyCollectionViewCell.self, forCellWithReuseIdentifier: CompanyCollectionViewCell.id)
         collectionView.register(UINib(nibName:"HorizontalHeader", bundle: nil), forSupplementaryViewOfKind: "HorizontalHeader", withReuseIdentifier: HorizontalHeader.id)
-
+        
         setDatasource()
     }
     
@@ -169,7 +169,7 @@ extension ViewController {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 20.0
         return UICollectionViewCompositionalLayout(sectionProvider: { [unowned self] sectionIndex, env in
-            var section: NSCollectionLayoutSection = self.createCellCompanySection()
+            var section: NSCollectionLayoutSection = LayoutSectionManager.createCellCompanySection()
             if !cellTypes.isEmpty {
                 let cell = cellTypes[sectionIndex]
                 
@@ -177,7 +177,7 @@ extension ViewController {
                     let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
                     let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "HorizontalHeader", alignment: .topLeading)
                     header.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
-                    section = self.createCellHorizontalSection()
+                    section = LayoutSectionManager.createCellHorizontalSection()
                     section.boundarySupplementaryItems = [header]
                 }
             }
@@ -188,60 +188,19 @@ extension ViewController {
         },configuration: config)
     }
                                                    
-    private func createCellCompanySection() -> NSCollectionLayoutSection {
-        let hightDimension = NSCollectionLayoutDimension.estimated(400)
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: hightDimension)
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: hightDimension)
-
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        
-        return section
-    }
-    private func createCellHorizontalSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.426), heightDimension: .absolute(246))
-        
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 12.0
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
-        section.orthogonalScrollingBehavior = .continuous
-        return section
-    }
-    
-  
     private func createRecruitLayout() -> UICollectionViewCompositionalLayout {
        let config = UICollectionViewCompositionalLayoutConfiguration()
       
         
         return UICollectionViewCompositionalLayout(sectionProvider: { [unowned self] sectionIndex, env in
            
-            
-            let section = self.createRecruitSection()
+            let section = LayoutSectionManager.createRecruitSection()
             self.addScrollEventToSection(section: section)
             return section
             
         }, configuration: config)
     }
     
-    private func createRecruitSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.426), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(246))
-        
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        group.interItemSpacing = .fixed(15)
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
-        return section
-        
-    }
     private func addScrollEventToSection(section: NSCollectionLayoutSection?) {
         let selectCategoryHeight = self.selectCategoryView.frame.height
 
@@ -261,3 +220,4 @@ extension ViewController {
     }
     
 }
+

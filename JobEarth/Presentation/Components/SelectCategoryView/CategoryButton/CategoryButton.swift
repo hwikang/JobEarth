@@ -31,13 +31,12 @@ class CategoryButton: UIButton {
     }
     
     func setUnselectedUI() {
-
         self.backgroundColor = .white
         tintColor = .black
+        self.layer.borderWidth = 1
         if let font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15) {
             self.titleLabel?.font = font
         }
-        self.layer.borderWidth = 1
     }
     
 }
