@@ -43,6 +43,7 @@ class RecruitCollectionViewCell: UICollectionViewCell {
         mainImage.contentMode = .scaleAspectFill
     }
     
+    
     func configCell(item: RecruitItem) {
         let url = URL(string: item.imageUrl)
         mainImage.kf.setImage(with: url)
@@ -84,14 +85,20 @@ class RecruitCollectionViewCell: UICollectionViewCell {
                 break
             }
             appealStackView.addArrangedSubview(label)
-//            print("label \(appeals[i]) \(label.frame.width) \(remainWidth)")
+
+//            print("\(title.text) \(appeals[i]) \(label.frame.width) \(remainWidth)")
             remainWidth -= label.frame.width
         }
+
     }
     
     private func ableToAddLabel(remainWidth: CGFloat, labelWidth: CGFloat) -> Bool {
         if remainWidth >= labelWidth {return true}
         return false
         
+    }
+    
+    override func prepareForReuse() {
+        appealStackView.subviews.forEach{ $0.removeFromSuperview() }
     }
 }

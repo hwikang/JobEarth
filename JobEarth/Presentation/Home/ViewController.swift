@@ -176,6 +176,7 @@ extension ViewController {
                 if cell == .horizontalTheme {
                     let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
                     let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "HorizontalHeader", alignment: .topLeading)
+                    header.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
                     section = self.createCellHorizontalSection()
                     section.boundarySupplementaryItems = [header]
                 }
@@ -205,10 +206,10 @@ extension ViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.426), heightDimension: .absolute(246))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 12.0
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
         section.orthogonalScrollingBehavior = .continuous
         return section
     }
@@ -245,7 +246,6 @@ extension ViewController {
         let selectCategoryHeight = self.selectCategoryView.frame.height
 
         section?.visibleItemsInvalidationHandler = {[weak self]   visibleItems, point, environment in
-            print(point.y)
             if point.y > 5 {
                 self?.changeCollectionViewConstraint(offset: -selectCategoryHeight)
 
