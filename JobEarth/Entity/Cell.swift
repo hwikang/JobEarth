@@ -38,7 +38,7 @@ struct CellItem: Decodable, Hashable {
     let updateDate: String?
     let count: Int?
     let sectionTitle: String?
-    let recommendRecruit: [RecruitItem]?
+    var recommendRecruit: [RecruitItem]?
 
     private enum CodingKeys: String, CodingKey {
         case cellType = "cell_type"
@@ -80,6 +80,14 @@ struct CellItem: Decodable, Hashable {
         count = try? container.decode(Int.self, forKey: .count)
         sectionTitle = try? container.decode(String.self, forKey: .sectionTitle)
         recommendRecruit = try? container.decode([RecruitItem].self, forKey: .recommendRecruit)
+    }
+    
+    mutating func filterRecommendRecruit(text: String) {
+        let filtered = recommendRecruit?.filter({ item in
+            item.title.lowercased().contains(text)
+        })
+        
+        recommendRecruit = filtered
     }
 
     static func == (lhs: CellItem, rhs: CellItem) -> Bool {

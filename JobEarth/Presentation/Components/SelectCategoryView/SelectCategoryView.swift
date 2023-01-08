@@ -16,7 +16,7 @@ class SelectCategoryView: UIView {
     private let category = BehaviorRelay<CategoryType>(value: .recruit)
     @IBOutlet weak var recruitButton: CategoryButton!
     @IBOutlet weak var companyButton: CategoryButton!
-    
+    public var currentCategory: CategoryType?
     override init(frame: CGRect) {
         super.init(frame: frame)
         customInit()
@@ -58,6 +58,7 @@ class SelectCategoryView: UIView {
         }.disposed(by: disposeBag)
         
         category.asDriver().drive {[weak self]  category in
+            self?.currentCategory = category
             switch category {
             case .recruit:
                 self?.recruitButton.setSelectedUI()

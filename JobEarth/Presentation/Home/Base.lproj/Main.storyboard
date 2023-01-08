@@ -68,6 +68,7 @@
                     <connections>
                         <outlet property="collectionTopConstraint" destination="t25-dA-pU6" id="awR-k6-Y38"/>
                         <outlet property="collectionView" destination="hQQ-eX-djr" id="rfL-19-tfL"/>
+                        <outlet property="searchTextView" destination="t00-ki-0Uv" id="Yia-uo-iKN"/>
                         <outlet property="selectCategoryView" destination="lNY-jk-lth" id="m1I-cf-65V"/>
                     </connections>
                 </viewController>

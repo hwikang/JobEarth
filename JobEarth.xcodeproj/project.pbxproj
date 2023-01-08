@@ -270,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				BFB81D292966D75700F187B7 /* Section.swift */,
+				BFB81D44296AEB2600F187B7 /* LayoutSectionManager.swift */,
 				BFB81D36296801D600F187B7 /* TestCell.xib */,
 				BFB81D38296801FA00F187B7 /* TestCell.swift */,
 				BFB81D3D29681EFF00F187B7 /* HorizontalHeader */,
@@ -283,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				BFC648972962BB340030600C /* ViewController.swift */,
-				BFB81D44296AEB2600F187B7 /* LayoutSectionManager.swift */,
 				BFC6490429641FC70030600C /* ViewModel.swift */,
 				BFC648992962BB340030600C /* Main.storyboard */,
 			);

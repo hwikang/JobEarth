@@ -23,8 +23,8 @@ class ViewModel {
     }
     
     struct Input {
-        var recruitTriger: Driver<Void>
-        var cellTriger: Driver<Void>
+        var recruitTriger: Driver<String>
+        var cellTriger: Driver<String>
 
     }
     
@@ -35,13 +35,45 @@ class ViewModel {
     }
     
     func transform(input:Input) ->Output {
-        let recruitItems = input.recruitTriger.flatMapLatest { _ -> Driver<[RecruitItem]>  in
+        let recruitItems = input.recruitTriger.flatMapLatest { searchText -> Driver<[RecruitItem]>  in
             return self.getRecruits()
+                .map({ items in
+                    if searchText.isEmpty { return items }
+                    let filtered =  items.filter { item in
+                        return item.title.lowercased().contains(searchText.lowercased())
+                   }
+                    return filtered
+                })
                 .asDriver(onErrorJustReturn: [])
         }
         
-        let cellItems = input.cellTriger.flatMapLatest { _ -> Driver<[CellItem]>  in
+        let cellItems = input.cellTriger.flatMapLatest { searchText -> Driver<[CellItem]>  in
+            let searchText = searchText.lowercased()
             return self.getCells()
+                .map({ items in
+                    if searchText.isEmpty { return items }
+
+                    let filtered = items.compactMap { item -> CellItem? in
+                    switch item.cellType{
+                        case .company:
+                            guard let name = item.name?.lowercased() else {return nil}
+                            if name.contains(searchText) {
+                                return item
+                            }
+                            return nil
+                        case .horizontalTheme:
+                            var temp = item
+                            temp.filterRecommendRecruit(text: searchText)
+                            guard let recommendRecruit = temp.recommendRecruit else {return nil}
+                            if recommendRecruit.isEmpty { return nil }
+                            return temp
+                            
+                        default:
+                            return nil
+                        }
+                    }
+                    return filtered
+                })
                 .asDriver(onErrorJustReturn: [])
         }
         

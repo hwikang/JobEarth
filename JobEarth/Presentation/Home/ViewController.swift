@@ -17,9 +17,10 @@ class ViewController: UIViewController {
         return appDelegate?.container
     }()
     private var viewModel: ViewModel!
-    private let recruitTrigger = PublishRelay<Void>()
-    private let companyTrigger = PublishRelay<Void>()
+    private let recruitTrigger = PublishRelay<String>()
+    private let companyTrigger = PublishRelay<String>()
     
+    @IBOutlet weak var searchTextView: SearchTextView!
     @IBOutlet weak var selectCategoryView: SelectCategoryView!
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -39,21 +40,21 @@ class ViewController: UIViewController {
     private func configCollectionView() {
         collectionView.register(RecruitCollectionViewCell.self, forCellWithReuseIdentifier: RecruitCollectionViewCell.id)
         collectionView.register(CompanyCollectionViewCell.self, forCellWithReuseIdentifier: CompanyCollectionViewCell.id)
-        collectionView.register(UINib(nibName:"HorizontalHeader", bundle: nil), forSupplementaryViewOfKind: "HorizontalHeader", withReuseIdentifier: HorizontalHeader.id)
+        collectionView.register(UINib(nibName:"HorizontalHeader", bundle: nil), forSupplementaryViewOfKind: HorizontalHeader.id, withReuseIdentifier: HorizontalHeader.id)
         
         setDatasource()
     }
     
-   
     
     private func bindViewModel() {
-        let input = ViewModel.Input(recruitTriger: recruitTrigger.asDriver(onErrorJustReturn: ()), cellTriger: companyTrigger.asDriver(onErrorJustReturn: ()))
+        let input = ViewModel.Input(recruitTriger: recruitTrigger.asDriver(onErrorJustReturn: ("")), cellTriger: companyTrigger.asDriver(onErrorJustReturn: ("")))
         let output = viewModel.transform(input: input)
         
         output.recruitItems
+        
             .drive{[unowned self] items in
                 collectionView.setCollectionViewLayout(createRecruitLayout(), animated: true)
-
+                
                 let sectionItems = items.map { Item.recruit($0) }
                 var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
                 snapshot.appendSections([Section.recruit])
@@ -69,6 +70,7 @@ class ViewController: UIViewController {
         
         output.cellItems
             .drive{[unowned self] items in
+                cellTypes.removeAll()
                 collectionView.setCollectionViewLayout(createCompanyLayout(), animated: true)
 
                 var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
@@ -101,7 +103,6 @@ class ViewController: UIViewController {
                     }
                
                 }
-                print("Apply")
                 self.dataSource?.apply(snapshot)
 
             }
@@ -115,23 +116,36 @@ class ViewController: UIViewController {
         bindView()
 
     }
-    
     private func bindView() {
         selectCategoryView.getCategory().drive{ [weak self] type in
+            let searchText = self?.searchTextView.textField.text ?? ""
             switch type {
             case .recruit:
-                self?.recruitTrigger.accept(())
+                self?.recruitTrigger.accept(searchText)
             case .company:
-                self?.companyTrigger.accept(())
+                self?.companyTrigger.accept(searchText)
             }
         }.disposed(by: disposeBag)
+    
+        searchTextView.textField.rx.text.bind{[weak self] text in
+            guard let category = self?.selectCategoryView.currentCategory, let searchText = text else { return }
+            
+            switch category {
+            case .recruit:
+                self?.recruitTrigger.accept(searchText)
+
+            case .company:
+                self?.companyTrigger.accept(searchText)
+
+            }
+        }.disposed(by: disposeBag)
+
     }
     
     
 }
 
 extension ViewController {
-   
     
     private func setDatasource() {
         dataSource = UICollectionViewDiffableDataSource<Section,Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier -> UICollectionViewCell? in
@@ -155,7 +169,6 @@ extension ViewController {
         })
         
         dataSource?.supplementaryViewProvider = {[weak self] (collectionView, kind, indexPath) -> UICollectionReusableView in
-            print("Heder provider \(kind)")
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HorizontalHeader.id, for: indexPath) as? HorizontalHeader else { fatalError()}
             
             let currentSectionData = self?.dataSource?.sectionIdentifier(for: indexPath.section)
@@ -175,8 +188,8 @@ extension ViewController {
                 
                 if cell == .horizontalTheme {
                     let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
-                    let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "HorizontalHeader", alignment: .topLeading)
-                    header.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
+                    let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HorizontalHeader.id, alignment: .topLeading)
+                    header.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
                     section = LayoutSectionManager.createCellHorizontalSection()
                     section.boundarySupplementaryItems = [header]
                 }
