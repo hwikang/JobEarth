@@ -49,14 +49,33 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SRT-EN-6GA">
+                                <rect key="frame" x="0.0" y="158" width="414" height="704"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="검색 결과 없음." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRo-zj-0Ey">
+                                        <rect key="frame" x="162" y="343" width="90" height="18"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="SRo-zj-0Ey" firstAttribute="centerX" secondItem="SRT-EN-6GA" secondAttribute="centerX" id="HlD-Rf-Qxp"/>
+                                    <constraint firstItem="SRo-zj-0Ey" firstAttribute="centerY" secondItem="SRT-EN-6GA" secondAttribute="centerY" id="htK-7w-bCs"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="t00-ki-0Uv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="56S-VA-5s8"/>
+                            <constraint firstItem="SRT-EN-6GA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7Q1-JG-6xQ"/>
                             <constraint firstItem="lNY-jk-lth" firstAttribute="top" secondItem="t00-ki-0Uv" secondAttribute="bottom" id="BEr-FP-QfS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SRT-EN-6GA" secondAttribute="bottom" id="J66-uk-Oqk"/>
+                            <constraint firstItem="SRT-EN-6GA" firstAttribute="top" secondItem="lNY-jk-lth" secondAttribute="bottom" id="NO6-3w-EHq"/>
                             <constraint firstItem="hQQ-eX-djr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="No8-Sw-mR3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hQQ-eX-djr" secondAttribute="bottom" id="QAv-JI-vlz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SRT-EN-6GA" secondAttribute="trailing" id="Qxd-nR-XBT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hQQ-eX-djr" secondAttribute="trailing" id="U5R-OT-Idl"/>
                             <constraint firstItem="lNY-jk-lth" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="egB-a9-qjp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lNY-jk-lth" secondAttribute="trailing" id="fZr-bv-vUp"/>
@@ -68,6 +87,7 @@
                     <connections>
                         <outlet property="collectionTopConstraint" destination="t25-dA-pU6" id="awR-k6-Y38"/>
                         <outlet property="collectionView" destination="hQQ-eX-djr" id="rfL-19-tfL"/>
+                        <outlet property="emptyView" destination="SRT-EN-6GA" id="fmn-fg-92K"/>
                         <outlet property="searchTextView" destination="t00-ki-0Uv" id="Yia-uo-iKN"/>
                         <outlet property="selectCategoryView" destination="lNY-jk-lth" id="m1I-cf-65V"/>
                     </connections>

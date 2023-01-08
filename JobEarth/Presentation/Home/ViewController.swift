@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     private let recruitTrigger = PublishRelay<String>()
     private let companyTrigger = PublishRelay<String>()
     
+    @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var searchTextView: SearchTextView!
     @IBOutlet weak var selectCategoryView: SelectCategoryView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -53,6 +54,8 @@ class ViewController: UIViewController {
         output.recruitItems
         
             .drive{[unowned self] items in
+                self.emptyView.isHidden = items.isEmpty ? false : true
+
                 collectionView.setCollectionViewLayout(createRecruitLayout(), animated: true)
                 
                 let sectionItems = items.map { Item.recruit($0) }
@@ -61,7 +64,9 @@ class ViewController: UIViewController {
                 snapshot.appendItems(sectionItems, toSection: Section.recruit)
                 self.dataSource?.apply(snapshot)
                 
-
+             
+           
+                
             }
             .disposed(by: disposeBag)
         output.error.drive { error in
@@ -70,6 +75,8 @@ class ViewController: UIViewController {
         
         output.cellItems
             .drive{[unowned self] items in
+                self.emptyView.isHidden = items.isEmpty ? false : true
+
                 cellTypes.removeAll()
                 collectionView.setCollectionViewLayout(createCompanyLayout(), animated: true)
 
