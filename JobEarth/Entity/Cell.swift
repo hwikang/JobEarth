@@ -24,7 +24,12 @@ enum CellItem: Decodable , Hashable{
     enum CodingKeys: String, CodingKey {
         case type = "cell_type"
     }
-
+    
+    enum CellType: String, Codable {
+          case company = "CELL_TYPE_COMPANY"
+          case horizontal = "CELL_TYPE_HORIZONTAL_THEME"
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -32,8 +37,7 @@ enum CellItem: Decodable , Hashable{
             self = .none
             return
         }
-        print("type \(type)")
-
+        
         switch type {
            case .company:
                self = try .company(Company(from: decoder))
@@ -43,11 +47,7 @@ enum CellItem: Decodable , Hashable{
            }
     }
     
-    
-    enum CellType: String, Codable {
-          case company = "CELL_TYPE_COMPANY"
-          case horizontal = "CELL_TYPE_HORIZONTAL_THEME"
-      }
+ 
     
     struct Company: Decodable, Hashable{
         var cellType: CellType
@@ -93,6 +93,7 @@ enum CellItem: Decodable , Hashable{
         var sectionTitle: String
         let count: Int
         var recommendRecruit: [RecruitItem]
+        
         private enum CodingKeys: String, CodingKey {
             case cellType = "cell_type"
            case count
@@ -101,14 +102,15 @@ enum CellItem: Decodable , Hashable{
        }
         
         public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-    
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
             cellType = try container.decode(CellType.self, forKey: .cellType)
 
-                count = try container.decode(Int.self, forKey: .count)
-                sectionTitle = try container.decode(String.self, forKey: .sectionTitle)
-                recommendRecruit = try container.decode([RecruitItem].self, forKey: .recommendRecruit)
-         }
+            count = try container.decode(Int.self, forKey: .count)
+            sectionTitle = try container.decode(String.self, forKey: .sectionTitle)
+            recommendRecruit = try container.decode([RecruitItem].self, forKey: .recommendRecruit)
+        }
+        
         mutating func filterRecommendRecruit(text: String) {
             let filtered = recommendRecruit.filter({ item in
                 item.title.lowercased().contains(text)

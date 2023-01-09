@@ -42,7 +42,6 @@ class ViewController: UIViewController {
         collectionView.register(RecruitCollectionViewCell.self, forCellWithReuseIdentifier: RecruitCollectionViewCell.id)
         collectionView.register(CompanyCollectionViewCell.self, forCellWithReuseIdentifier: CompanyCollectionViewCell.id)
         collectionView.register(UINib(nibName: "CompanyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CompanyCollectionViewCell.id)
-
         collectionView.register(UINib(nibName:"HorizontalHeader", bundle: nil), forSupplementaryViewOfKind: HorizontalHeader.id, withReuseIdentifier: HorizontalHeader.id)
         
         setDatasource()
@@ -54,21 +53,11 @@ class ViewController: UIViewController {
         let output = viewModel.transform(input: input)
         
         output.recruitItems
-        
             .drive{[unowned self] items in
                 self.emptyView.isHidden = items.isEmpty ? false : true
-
                 collectionView.setCollectionViewLayout(createRecruitLayout(), animated: true)
-                
-                let sectionItems = items.map { Item.recruit($0) }
-                var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
-                snapshot.appendSections([Section.recruit])
-                snapshot.appendItems(sectionItems, toSection: Section.recruit)
+                let snapshot = createCellItemSnapshot(items: items)
                 self.dataSource?.apply(snapshot)
-                
-             
-           
-                
             }
             .disposed(by: disposeBag)
         output.error.drive { error in
@@ -78,41 +67,9 @@ class ViewController: UIViewController {
         output.cellItems
             .drive{[unowned self] items in
                 self.emptyView.isHidden = items.isEmpty ? false : true
-
                 cellTypes.removeAll()
                 collectionView.setCollectionViewLayout(createCompanyLayout(), animated: true)
-
-                var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
-                
-                items.forEach { item in
-                    
-                    switch item {
-                    case .company(let companyItem):
-                      
-                        cellTypes.append(companyItem.cellType)
-
-                        let sectionItem = Item.cellCompany(companyItem)
-
-                        snapshot.appendSections([Section.cellCompany(companyItem.name)])
-
-                        snapshot.appendItems([sectionItem], toSection: Section.cellCompany(companyItem.name))
-                    case .horizontal(let horizontalItem):
-                         let title = horizontalItem.sectionTitle
-                        let recommendRecruit = horizontalItem.recommendRecruit
-                        cellTypes.append(horizontalItem.cellType)
-
-                        let section = Section.cellHorizontal(title)
-                        snapshot.appendSections([section])
-                        let items = recommendRecruit.map { Item.cellHorizontal($0)}
-                        snapshot.appendItems(items, toSection: section)
-                    default:
-                       print("None Type")
-                   }
-              
-                    
-                
-               
-                }
+                let snapshot = createCellItemSnapshot(items: items)
                 self.dataSource?.apply(snapshot)
 
             }
@@ -125,6 +82,39 @@ class ViewController: UIViewController {
         
         bindView()
 
+    }
+    
+    private func createCellItemSnapshot(items: [RecruitItem]) -> NSDiffableDataSourceSnapshot<Section,Item>{
+        var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
+        let sectionItems = items.map { Item.recruit($0) }
+        snapshot.appendSections([Section.recruit])
+        snapshot.appendItems(sectionItems, toSection: Section.recruit)
+        return snapshot
+    }
+    
+    private func createCellItemSnapshot(items: [CellItem]) -> NSDiffableDataSourceSnapshot<Section,Item>{
+        var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
+        items.forEach { item in
+            switch item {
+            case .company(let companyItem):
+                cellTypes.append(companyItem.cellType)
+                let sectionItem = Item.cellCompany(companyItem)
+                snapshot.appendSections([Section.cellCompany(companyItem.name)])
+                snapshot.appendItems([sectionItem], toSection: Section.cellCompany(companyItem.name))
+            case .horizontal(let horizontalItem):
+                 let title = horizontalItem.sectionTitle
+                let recommendRecruit = horizontalItem.recommendRecruit
+                cellTypes.append(horizontalItem.cellType)
+                let section = Section.cellHorizontal(title)
+                snapshot.appendSections([section])
+                let items = recommendRecruit.map { Item.cellHorizontal($0)}
+                snapshot.appendItems(items, toSection: section)
+            default:
+               print("None Type")
+           }
+            
+        }
+        return snapshot
     }
     private func bindView() {
         selectCategoryView.getCategory().drive{ [weak self] type in
@@ -173,9 +163,6 @@ extension ViewController: UICollectionViewDelegate {
                     cell.configCell(item: companyItem)
                     self?.addTapEventToCompanyCell(cell: cell, item: companyItem)
                     return cell
-//                    if case let .company(companyItem) = item {
-//
-//                    }
                 }
                
             }

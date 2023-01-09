@@ -18,8 +18,6 @@ class ViewModel {
         self.recruitNetwork = recruitNetwork
         self.cellNetwork = cellNetwork
         
-        
-//        getCells()
     }
     
     struct Input {
@@ -47,32 +45,13 @@ class ViewModel {
                 .asDriver(onErrorJustReturn: [])
         }
         
-        let cellItems = input.cellTriger.flatMapLatest { searchText -> Driver<[CellItem]>  in
+        let cellItems = input.cellTriger.flatMapLatest {[unowned self] searchText -> Driver<[CellItem]>  in
             let searchText = searchText.lowercased()
             return self.getCells()
                 .map({ items in
                     if searchText.isEmpty { return items }
-
-                    let filtered = items.compactMap { item -> CellItem? in
-                    switch item{
-                        case .company(let companyItem):
-                             let name = companyItem.name.lowercased()
-                            if name.contains(searchText) {
-                                return item
-                            }
-                            return nil
-                    case .horizontal(let horizontalItem):
-                            var temp = horizontalItem
-                            temp.filterRecommendRecruit(text: searchText)
-                             let recommendRecruit = temp.recommendRecruit
-                            if recommendRecruit.isEmpty { return nil }
-                            let cellItem = CellItem.horizontal(temp)
-                            return cellItem
-                            
-                        default:
-                            return nil
-                        }
-                    }
+                    let filtered = self.filterData(items: items, searchText: searchText)
+                   
                     return filtered
                 })
                 .asDriver(onErrorJustReturn: [])
@@ -97,7 +76,31 @@ class ViewModel {
                 self?.errorMessage.accept(error.localizedDescription)
                 return Observable.just(CellData(items: []))
             })
-                .map{ $0.items }
+            .map{ $0.items }
 
+    }
+    
+    private func filterData(items: [CellItem], searchText: String) -> [CellItem] {
+        let filtered = items.compactMap { item -> CellItem? in
+        switch item{
+            case .company(let companyItem):
+                 let name = companyItem.name.lowercased()
+                if name.contains(searchText) {
+                    return item
+                }
+                return nil
+            case .horizontal(let horizontalItem):
+                var temp = horizontalItem
+                temp.filterRecommendRecruit(text: searchText)
+                 let recommendRecruit = temp.recommendRecruit
+                if recommendRecruit.isEmpty { return nil }
+                let cellItem = CellItem.horizontal(temp)
+                return cellItem
+                
+            default:
+                return nil
+            }
+        }
+        return filtered
     }
 }
