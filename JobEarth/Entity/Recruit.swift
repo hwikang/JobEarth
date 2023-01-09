@@ -47,7 +47,6 @@ struct RecruitItem: Decodable, Hashable {
     }
     
     static func == (lhs: RecruitItem, rhs: RecruitItem) -> Bool {
-//        lhs.id == rhs.id
         return false
     }
     

@@ -39,8 +39,8 @@ class ViewController: UIViewController {
     }
     
     private func configCollectionView() {
-        collectionView.register(RecruitCollectionViewCell.self, forCellWithReuseIdentifier: RecruitCollectionViewCell.id)
-        collectionView.register(CompanyCollectionViewCell.self, forCellWithReuseIdentifier: CompanyCollectionViewCell.id)
+        collectionView.register(UINib(nibName: "RecruitCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: RecruitCollectionViewCell.id)
+
         collectionView.register(UINib(nibName: "CompanyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CompanyCollectionViewCell.id)
         collectionView.register(UINib(nibName:"HorizontalHeader", bundle: nil), forSupplementaryViewOfKind: HorizontalHeader.id, withReuseIdentifier: HorizontalHeader.id)
         
@@ -68,6 +68,7 @@ class ViewController: UIViewController {
             .drive{[unowned self] items in
                 self.emptyView.isHidden = items.isEmpty ? false : true
                 cellTypes.removeAll()
+
                 collectionView.setCollectionViewLayout(createCompanyLayout(), animated: true)
                 let snapshot = createCellItemSnapshot(items: items)
                 self.dataSource?.apply(snapshot)
@@ -220,7 +221,7 @@ extension ViewController: UICollectionViewDelegate {
         let selectCategoryHeight = self.selectCategoryView.frame.height
 
         section?.visibleItemsInvalidationHandler = {[weak self]   visibleItems, point, environment in
-            if point.y > 5 {
+            if point.y > selectCategoryHeight {
                 self?.changeCollectionViewConstraint(offset: -selectCategoryHeight)
 
             }else {
