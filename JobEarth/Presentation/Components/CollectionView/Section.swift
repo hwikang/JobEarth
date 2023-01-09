@@ -7,10 +7,6 @@
 
 import Foundation
 
-//struct Section: Hashable {
-//    let id : String
-//}
-
 enum Section: Hashable {
     case recruit
     case cellCompany(String)

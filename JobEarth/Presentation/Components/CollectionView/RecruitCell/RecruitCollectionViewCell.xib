@@ -58,7 +58,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vj6-pI-Xi4">
+                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vj6-pI-Xi4">
                         <rect key="frame" x="0.0" y="154" width="160" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="059-Xu-JmH"/>
@@ -72,7 +72,6 @@
                     <constraint firstItem="6B4-M2-4RP" firstAttribute="leading" secondItem="tHE-eN-ypw" secondAttribute="leading" id="95h-Ul-w9V"/>
                     <constraint firstItem="uNA-qn-s5a" firstAttribute="top" secondItem="C2I-TZ-NbM" secondAttribute="bottom" constant="4" id="Av4-cP-gB1"/>
                     <constraint firstAttribute="trailing" secondItem="6B4-M2-4RP" secondAttribute="trailing" id="BC1-oh-gUB"/>
-                    <constraint firstAttribute="trailing" secondItem="Vj6-pI-Xi4" secondAttribute="trailing" id="Dsl-WR-5CM"/>
                     <constraint firstItem="Vj6-pI-Xi4" firstAttribute="top" secondItem="uNA-qn-s5a" secondAttribute="bottom" constant="4" id="GGk-nY-os6"/>
                     <constraint firstItem="Vj6-pI-Xi4" firstAttribute="leading" secondItem="tHE-eN-ypw" secondAttribute="leading" id="bge-cP-sVi"/>
                     <constraint firstItem="uNA-qn-s5a" firstAttribute="leading" secondItem="tHE-eN-ypw" secondAttribute="leading" id="d55-eg-Jp4"/>
