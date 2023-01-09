@@ -72,6 +72,9 @@ class ViewController: UIViewController {
                 collectionView.setCollectionViewLayout(createCompanyLayout(), animated: true)
                 let snapshot = createCellItemSnapshot(items: items)
                 self.dataSource?.apply(snapshot)
+                scrollToTop()
+
+               
 
             }
             .disposed(by: disposeBag)
@@ -84,7 +87,7 @@ class ViewController: UIViewController {
         bindView()
 
     }
-    
+
     private func createCellItemSnapshot(items: [RecruitItem]) -> NSDiffableDataSourceSnapshot<Section,Item>{
         var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
         let sectionItems = items.map { Item.recruit($0) }
@@ -117,6 +120,14 @@ class ViewController: UIViewController {
         }
         return snapshot
     }
+    
+    
+    private func scrollToTop(){
+        collectionView.contentOffset.y = 0
+        changeCollectionViewConstraint(offset: 0)
+    }
+    
+    
     private func bindView() {
         selectCategoryView.getCategory().drive{ [weak self] type in
             let searchText = self?.searchTextView.textField.text ?? ""
