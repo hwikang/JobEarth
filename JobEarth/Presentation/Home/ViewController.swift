@@ -235,7 +235,7 @@ extension ViewController: UICollectionViewDelegate {
     }
     
     private func addTapEventToRecruitCell(cell: RecruitCollectionViewCell, item: RecruitItem) {
-      
+        cell.gestureRecognizers?.removeAll()
         let tapGesture = UITapGestureRecognizer()
         cell.addGestureRecognizer(tapGesture)
 
@@ -245,13 +245,16 @@ extension ViewController: UICollectionViewDelegate {
         }.disposed(by: disposeBag)
     }
     private func addTapEventToCompanyCell(cell: CompanyCollectionViewCell, item: CellItem.Company) {
-      
+        cell.gestureRecognizers?.removeAll()
         let tapGesture = UITapGestureRecognizer()
         cell.addGestureRecognizer(tapGesture)
 
-        tapGesture.rx.event.bind{ recognizer in
-            print(item)
+        tapGesture.rx.event.bind{[weak self] recognizer in
+            let vc = DetailViewController.initiate(title: item.name, imageUrl: item.logoPath)
+            self?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
     }
+    
+
 }
 
