@@ -119,9 +119,4 @@ enum CellItem: Decodable , Hashable{
             recommendRecruit = filtered
         }
     }
-    
-    static func == (lhs: CellItem, rhs: CellItem) -> Bool {
-
-          return false
-    }
 }

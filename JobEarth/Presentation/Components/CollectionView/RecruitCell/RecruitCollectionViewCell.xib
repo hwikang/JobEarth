@@ -7,18 +7,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitCollectionViewCell" customModule="JobEarth" customModuleProvider="target">
-            <connections>
-                <outlet property="appealStackView" destination="Vj6-pI-Xi4" id="eFd-mE-V8K"/>
-                <outlet property="mainImage" destination="fmn-SO-F1J" id="7TA-hv-W92"/>
-                <outlet property="ratingPoint" destination="QbH-34-P24" id="QrQ-Es-uGy"/>
-                <outlet property="ratingType" destination="S73-c4-PAV" id="Hd9-Bc-Z7S"/>
-                <outlet property="reward" destination="6B4-M2-4RP" id="DFs-a0-Gr8"/>
-                <outlet property="title" destination="C2I-TZ-NbM" id="TxI-qQ-zVf"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PR0-mN-sLa">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecruitCollectionViewCell" id="PR0-mN-sLa" customClass="RecruitCollectionViewCell" customModule="JobEarth" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="160" height="226"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tHE-eN-ypw">
@@ -67,7 +58,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vj6-pI-Xi4">
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vj6-pI-Xi4">
                         <rect key="frame" x="0.0" y="154" width="160" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="059-Xu-JmH"/>
@@ -81,6 +72,7 @@
                     <constraint firstItem="6B4-M2-4RP" firstAttribute="leading" secondItem="tHE-eN-ypw" secondAttribute="leading" id="95h-Ul-w9V"/>
                     <constraint firstItem="uNA-qn-s5a" firstAttribute="top" secondItem="C2I-TZ-NbM" secondAttribute="bottom" constant="4" id="Av4-cP-gB1"/>
                     <constraint firstAttribute="trailing" secondItem="6B4-M2-4RP" secondAttribute="trailing" id="BC1-oh-gUB"/>
+                    <constraint firstAttribute="trailing" secondItem="Vj6-pI-Xi4" secondAttribute="trailing" id="Dsl-WR-5CM"/>
                     <constraint firstItem="Vj6-pI-Xi4" firstAttribute="top" secondItem="uNA-qn-s5a" secondAttribute="bottom" constant="4" id="GGk-nY-os6"/>
                     <constraint firstItem="Vj6-pI-Xi4" firstAttribute="leading" secondItem="tHE-eN-ypw" secondAttribute="leading" id="bge-cP-sVi"/>
                     <constraint firstItem="uNA-qn-s5a" firstAttribute="leading" secondItem="tHE-eN-ypw" secondAttribute="leading" id="d55-eg-Jp4"/>
@@ -91,6 +83,14 @@
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="137" height="138"/>
+            <connections>
+                <outlet property="appealStackView" destination="Vj6-pI-Xi4" id="evE-G7-v6v"/>
+                <outlet property="mainImage" destination="fmn-SO-F1J" id="hSg-DP-wPy"/>
+                <outlet property="ratingPoint" destination="QbH-34-P24" id="D3x-Nx-6Fe"/>
+                <outlet property="ratingType" destination="S73-c4-PAV" id="J8u-Qr-WFc"/>
+                <outlet property="reward" destination="6B4-M2-4RP" id="Y8E-4G-KMu"/>
+                <outlet property="title" destination="C2I-TZ-NbM" id="WNB-bb-74G"/>
+            </connections>
             <point key="canvasLocation" x="298.55072463768118" y="81.696428571428569"/>
         </collectionViewCell>
     </objects>

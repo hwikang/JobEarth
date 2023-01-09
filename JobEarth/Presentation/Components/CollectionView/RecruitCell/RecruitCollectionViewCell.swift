@@ -21,31 +21,20 @@ class RecruitCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var reward: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
-        customInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        customInit()
     }
     
-    private func customInit() {
-        if let view = Bundle.main.loadNibNamed("RecruitCollectionViewCell", owner: self, options: nil)?.first as? UICollectionViewCell {
-           view.frame = self.bounds
-           addSubview(view)
-        }
-        setUI()
-    }
+  
     
-    private func setUI() {
+    
+    func configCell(item: RecruitItem) {
         mainImage.layer.cornerRadius = 8
         mainImage.kf.indicatorType = .activity
         mainImage.contentMode = .scaleAspectFill
         
-    }
-    
-    
-    func configCell(item: RecruitItem) {
         let url = URL(string: item.imageUrl)
         mainImage.kf.setImage(with: url)
         title.text = item.title
