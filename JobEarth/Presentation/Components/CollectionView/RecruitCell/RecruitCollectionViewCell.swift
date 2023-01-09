@@ -27,9 +27,6 @@ class RecruitCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
-  
-    
-    
     func configCell(item: RecruitItem) {
         mainImage.layer.cornerRadius = 8
         mainImage.kf.indicatorType = .activity
@@ -48,7 +45,6 @@ class RecruitCollectionViewCell: UICollectionViewCell {
         
     }
    
-    
     private func getRewardString(reward: Int) -> String {
         let format = NumberFormatter()
         format.numberStyle = .decimal
@@ -59,12 +55,12 @@ class RecruitCollectionViewCell: UICollectionViewCell {
     }
     
     private func getBestRating(ratings: [Rating]) -> Rating? {
-        let sorted = ratings.sorted{$0.rating>$1.rating}
+        let sorted = ratings.sorted { $0.rating > $1.rating }
         return sorted.first
     }
     
-    //Appeal 내용 없으면 비노출, 내용이 Frame 벗어나면 비노출
-    private func addAppalLabels(appeals:[String]) {
+    // Appeal 내용 없으면 비노출, 내용이 Frame 벗어나면 비노출
+    private func addAppalLabels(appeals: [String]) {
         var remainWidth = self.frame.width
         for i in 0..<appeals.count {
             if appeals[i].isEmpty { continue }
@@ -90,6 +86,6 @@ class RecruitCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        appealStackView.subviews.forEach{ $0.removeFromSuperview() }
+        appealStackView.subviews.forEach { $0.removeFromSuperview() }
     }
 }

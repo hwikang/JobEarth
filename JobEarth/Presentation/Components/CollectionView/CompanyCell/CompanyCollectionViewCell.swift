@@ -43,7 +43,7 @@ class CompanyCollectionViewCell: UICollectionViewCell {
     private func setLogoImage(_ path: String?) {
         if let logoPath = path {
             let url = URL(string: logoPath)
-            logoImage.kf.setImage(with: url, placeholder: UIImage(named:"placeholder"))
+            logoImage.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
 
         }
     }

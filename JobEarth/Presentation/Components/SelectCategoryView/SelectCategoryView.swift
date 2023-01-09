@@ -44,7 +44,6 @@ class SelectCategoryView: UIView {
         return category.value
     }
     
-    
     private func bindView() {
         recruitButton.rx.tap.bind {[weak self]  in
             if self?.getCurrentCategory() == .recruit { return }

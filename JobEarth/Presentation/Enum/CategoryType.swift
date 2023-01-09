@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum CategoryType {
     case recruit
     case company

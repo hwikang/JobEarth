@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var selectCategoryView: SelectCategoryView!
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
-    private var snapshot: NSDiffableDataSourceSnapshot<Section,Item>?
+    private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
     private var cellTypes: [CellItem.CellType] = []
     
     @IBOutlet weak var collectionTopConstraint: NSLayoutConstraint!
@@ -40,20 +40,18 @@ class ViewController: UIViewController {
     
     private func configCollectionView() {
         collectionView.register(UINib(nibName: "RecruitCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: RecruitCollectionViewCell.id)
-
         collectionView.register(UINib(nibName: "CompanyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CompanyCollectionViewCell.id)
-        collectionView.register(UINib(nibName:"HorizontalHeader", bundle: nil), forSupplementaryViewOfKind: HorizontalHeader.id, withReuseIdentifier: HorizontalHeader.id)
+        collectionView.register(UINib(nibName: "HorizontalHeader", bundle: nil), forSupplementaryViewOfKind: HorizontalHeader.id, withReuseIdentifier: HorizontalHeader.id)
         
         setDatasource()
     }
-    
     
     private func bindViewModel() {
         let input = ViewModel.Input(recruitTriger: recruitTrigger.asDriver(onErrorJustReturn: ("")), cellTriger: companyTrigger.asDriver(onErrorJustReturn: ("")))
         let output = viewModel.transform(input: input)
         
         output.recruitItems
-            .drive{[unowned self] items in
+            .drive {[unowned self] items in
                 self.emptyView.isHidden = items.isEmpty ? false : true
                 collectionView.setCollectionViewLayout(createRecruitLayout(), animated: true)
                 let snapshot = createCellItemSnapshot(items: items)
@@ -65,36 +63,34 @@ class ViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         output.cellItems
-            .drive{[unowned self] items in
+            .drive {[unowned self] items in
                 self.emptyView.isHidden = items.isEmpty ? false : true
                 cellTypes.removeAll()
 
                 collectionView.setCollectionViewLayout(createCompanyLayout(), animated: true)
                 let snapshot = createCellItemSnapshot(items: items)
                 self.dataSource?.apply(snapshot)
-
+                scrollToTop()
             }
             .disposed(by: disposeBag)
         output.error.drive { error in
             print("Error @@ \(error)")
         }.disposed(by: disposeBag)
         
-        
-        
         bindView()
 
     }
-    
-    private func createCellItemSnapshot(items: [RecruitItem]) -> NSDiffableDataSourceSnapshot<Section,Item>{
-        var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
+
+    private func createCellItemSnapshot(items: [RecruitItem]) -> NSDiffableDataSourceSnapshot<Section, Item> {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         let sectionItems = items.map { Item.recruit($0) }
         snapshot.appendSections([Section.recruit])
         snapshot.appendItems(sectionItems, toSection: Section.recruit)
         return snapshot
     }
     
-    private func createCellItemSnapshot(items: [CellItem]) -> NSDiffableDataSourceSnapshot<Section,Item>{
-        var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
+    private func createCellItemSnapshot(items: [CellItem]) -> NSDiffableDataSourceSnapshot<Section, Item> {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         items.forEach { item in
             switch item {
             case .company(let companyItem):
@@ -117,8 +113,14 @@ class ViewController: UIViewController {
         }
         return snapshot
     }
+    
+    private func scrollToTop() {
+        collectionView.contentOffset.y = 0
+        changeCollectionViewConstraint(offset: 0)
+    }
+    
     private func bindView() {
-        selectCategoryView.getCategory().drive{ [weak self] type in
+        selectCategoryView.getCategory().drive { [weak self] type in
             let searchText = self?.searchTextView.textField.text ?? ""
             switch type {
             case .recruit:
@@ -128,7 +130,7 @@ class ViewController: UIViewController {
             }
         }.disposed(by: disposeBag)
     
-        searchTextView.textField.rx.text.bind{[weak self] text in
+        searchTextView.textField.rx.text.bind {[weak self] text in
             guard let category = self?.selectCategoryView.currentCategory, let searchText = text else { return }
             
             switch category {
@@ -143,13 +145,12 @@ class ViewController: UIViewController {
 
     }
     
-    
 }
 
 extension ViewController: UICollectionViewDelegate {
     
     private func setDatasource() {
-        dataSource = UICollectionViewDiffableDataSource<Section,Item>(collectionView: collectionView, cellProvider: {[weak self] collectionView, indexPath, itemIdentifier -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: {[weak self] collectionView, indexPath, itemIdentifier -> UICollectionViewCell? in
             switch itemIdentifier {
             case .recruit(let item), .cellHorizontal(let item):
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecruitCollectionViewCell.id, for: indexPath) as? RecruitCollectionViewCell {
@@ -183,7 +184,7 @@ extension ViewController: UICollectionViewDelegate {
     private func createCompanyLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 20.0
-        return UICollectionViewCompositionalLayout(sectionProvider: { [unowned self] sectionIndex, env in
+        return UICollectionViewCompositionalLayout(sectionProvider: { [unowned self] sectionIndex, _ in
             var section: NSCollectionLayoutSection = LayoutSectionManager.createCellCompanySection()
             if !cellTypes.isEmpty {
                 let cell = cellTypes[sectionIndex]
@@ -198,16 +199,14 @@ extension ViewController: UICollectionViewDelegate {
             }
             self.addScrollEventToSection(section: section)
 
-
             return section
-        },configuration: config)
+        }, configuration: config)
     }
                                                    
     private func createRecruitLayout() -> UICollectionViewCompositionalLayout {
        let config = UICollectionViewCompositionalLayoutConfiguration()
       
-        
-        return UICollectionViewCompositionalLayout(sectionProvider: { [unowned self] sectionIndex, env in
+        return UICollectionViewCompositionalLayout(sectionProvider: { [unowned self] _, _ in
            
             let section = LayoutSectionManager.createRecruitSection()
             self.addScrollEventToSection(section: section)
@@ -220,11 +219,10 @@ extension ViewController: UICollectionViewDelegate {
     private func addScrollEventToSection(section: NSCollectionLayoutSection?) {
         let selectCategoryHeight = self.selectCategoryView.frame.height
 
-        section?.visibleItemsInvalidationHandler = {[weak self]   visibleItems, point, environment in
+        section?.visibleItemsInvalidationHandler = {[weak self]   _, point, _ in
             if point.y > selectCategoryHeight {
                 self?.changeCollectionViewConstraint(offset: -selectCategoryHeight)
-
-            }else {
+            } else {
                 self?.changeCollectionViewConstraint(offset: 0)
 
             }
@@ -240,7 +238,7 @@ extension ViewController: UICollectionViewDelegate {
         let tapGesture = UITapGestureRecognizer()
         cell.addGestureRecognizer(tapGesture)
 
-        tapGesture.rx.event.bind{[weak self] recognizer in
+        tapGesture.rx.event.bind {[weak self] _ in
             let vc = DetailViewController.initiate(title: item.title, imageUrl: item.imageUrl)
             self?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
@@ -250,12 +248,10 @@ extension ViewController: UICollectionViewDelegate {
         let tapGesture = UITapGestureRecognizer()
         cell.addGestureRecognizer(tapGesture)
 
-        tapGesture.rx.event.bind{[weak self] recognizer in
+        tapGesture.rx.event.bind {[weak self] _ in
             let vc = DetailViewController.initiate(title: item.name, imageUrl: item.logoPath)
             self?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
     }
     
-
 }
-

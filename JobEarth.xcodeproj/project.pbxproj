@@ -22,6 +22,7 @@
 		BFB81D4A296AEC9000F187B7 /* SearchTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D49296AEC9000F187B7 /* SearchTextView.swift */; };
 		BFB81D4D296B16D900F187B7 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB81D4C296B16D900F187B7 /* Detail.storyboard */; };
 		BFB81D4F296B16E800F187B7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB81D4E296B16E800F187B7 /* DetailViewController.swift */; };
+		BFB81D52296C4E1800F187B7 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BFB81D51296C4E1800F187B7 /* .swiftlint.yml */; };
 		BFC648942962BB340030600C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648932962BB340030600C /* AppDelegate.swift */; };
 		BFC648962962BB340030600C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648952962BB340030600C /* SceneDelegate.swift */; };
 		BFC648982962BB340030600C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC648972962BB340030600C /* ViewController.swift */; };
@@ -79,6 +80,7 @@
 		BFB81D49296AEC9000F187B7 /* SearchTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextView.swift; sourceTree = "<group>"; };
 		BFB81D4C296B16D900F187B7 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		BFB81D4E296B16E800F187B7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BFB81D51296C4E1800F187B7 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = JobEarth/.swiftlint.yml; sourceTree = "<group>"; };
 		BFC648902962BB340030600C /* JobEarth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobEarth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC648932962BB340030600C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC648952962BB340030600C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		BFC648872962BB340030600C = {
 			isa = PBXGroup;
 			children = (
+				BFB81D51296C4E1800F187B7 /* .swiftlint.yml */,
 				BFC648922962BB340030600C /* JobEarth */,
 				BFC648A92962BB360030600C /* JobEarthTests */,
 				BFC648912962BB340030600C /* Products */,
@@ -335,6 +338,7 @@
 				BFC6488C2962BB340030600C /* Sources */,
 				BFC6488D2962BB340030600C /* Frameworks */,
 				BFC6488E2962BB340030600C /* Resources */,
+				BFB81D50296C4D9900F187B7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -444,6 +448,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFB81D52296C4E1800F187B7 /* .swiftlint.yml in Resources */,
 				BFB81D48296AEBA400F187B7 /* SearchTextView.xib in Resources */,
 				BFB81D3F29681F3000F187B7 /* HorizontalHeader.xib in Resources */,
 				BFB81D2D2967B74600F187B7 /* CompanyCollectionViewCell.xib in Resources */,
@@ -471,6 +476,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BFB81D50296C4D9900F187B7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BFC6488C2962BB340030600C /* Sources */ = {
