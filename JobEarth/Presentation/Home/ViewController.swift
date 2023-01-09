@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section,Item>?
-    private var cellTypes: [CellItemType] = []
+    private var cellTypes: [CellItem.CellType] = []
     
     @IBOutlet weak var collectionTopConstraint: NSLayoutConstraint!
     var test: NSLayoutConstraint?
@@ -85,31 +85,32 @@ class ViewController: UIViewController {
                 var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
                 
                 items.forEach { item in
-                   
-                    switch item.cellType {
-                    case .company:
-                        if let name = item.name {
-                            cellTypes.append(item.cellType)
+                    
+                    switch item {
+                    case .company(let companyItem):
+                      
+                        cellTypes.append(companyItem.cellType)
 
-                            let sectionItem = Item.cellCompany(item)
+                        let sectionItem = Item.cellCompany(companyItem)
 
-                            snapshot.appendSections([Section.cellCompany(name)])
+                        snapshot.appendSections([Section.cellCompany(companyItem.name)])
 
-                            snapshot.appendItems([sectionItem], toSection: Section.cellCompany(name))
-                        }
-                    case .horizontalTheme:
-                        if let title = item.sectionTitle, let recommendRecruit = item.recommendRecruit {
-                            cellTypes.append(item.cellType)
+                        snapshot.appendItems([sectionItem], toSection: Section.cellCompany(companyItem.name))
+                    case .horizontal(let horizontalItem):
+                         let title = horizontalItem.sectionTitle
+                        let recommendRecruit = horizontalItem.recommendRecruit
+                        cellTypes.append(horizontalItem.cellType)
 
-                            let section = Section.cellHorizontal(title)
-                            snapshot.appendSections([section])
-                            let items = recommendRecruit.map { Item.cellHorizontal($0)}
-                            snapshot.appendItems(items, toSection: section)
-
-                        }
+                        let section = Section.cellHorizontal(title)
+                        snapshot.appendSections([section])
+                        let items = recommendRecruit.map { Item.cellHorizontal($0)}
+                        snapshot.appendItems(items, toSection: section)
                     default:
-                        print("None Type")
-                    }
+                       print("None Type")
+                   }
+              
+                    
+                
                
                 }
                 self.dataSource?.apply(snapshot)
@@ -166,12 +167,15 @@ extension ViewController: UICollectionViewDelegate {
                     return cell
                 }
                 
-            case .cellCompany(let item):
+            case .cellCompany(let companyItem):
+               
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyCollectionViewCell.id, for: indexPath) as? CompanyCollectionViewCell {
-                    cell.configCell(item: item)
-                    self?.addTapEventToCompanyCell(cell: cell, item: item)
+                    cell.configCell(item: companyItem)
+                    self?.addTapEventToCompanyCell(cell: cell, item: companyItem)
                     return cell
-
+//                    if case let .company(companyItem) = item {
+//
+//                    }
                 }
                
             }
@@ -196,7 +200,7 @@ extension ViewController: UICollectionViewDelegate {
             if !cellTypes.isEmpty {
                 let cell = cellTypes[sectionIndex]
                 
-                if cell == .horizontalTheme {
+                if cell == .horizontal {
                     let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
                     let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HorizontalHeader.id, alignment: .topLeading)
                     header.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
@@ -253,7 +257,7 @@ extension ViewController: UICollectionViewDelegate {
             self?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
     }
-    private func addTapEventToCompanyCell(cell: CompanyCollectionViewCell, item: CellItem) {
+    private func addTapEventToCompanyCell(cell: CompanyCollectionViewCell, item: CellItem.Company) {
       
         let tapGesture = UITapGestureRecognizer()
         cell.addGestureRecognizer(tapGesture)

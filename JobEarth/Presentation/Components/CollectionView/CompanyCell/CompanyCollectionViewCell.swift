@@ -28,7 +28,7 @@ class CompanyCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
-    func configCell(item: CellItem) {
+    func configCell(item: CellItem.Company) {
         setLogoImage(item.logoPath)
         companyName.text = item.name
         setRateAvg(item.rateTotalAvg)

@@ -22,7 +22,7 @@ enum Section: Hashable {
 
 enum Item: Hashable {
     case recruit(RecruitItem)
-    case cellCompany(CellItem)
+    case cellCompany(CellItem.Company)
     case cellHorizontal(RecruitItem)
 }
 

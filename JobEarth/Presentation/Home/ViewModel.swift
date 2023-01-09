@@ -54,19 +54,20 @@ class ViewModel {
                     if searchText.isEmpty { return items }
 
                     let filtered = items.compactMap { item -> CellItem? in
-                    switch item.cellType{
-                        case .company:
-                            guard let name = item.name?.lowercased() else {return nil}
+                    switch item{
+                        case .company(let companyItem):
+                             let name = companyItem.name.lowercased()
                             if name.contains(searchText) {
                                 return item
                             }
                             return nil
-                        case .horizontalTheme:
-                            var temp = item
+                    case .horizontal(let horizontalItem):
+                            var temp = horizontalItem
                             temp.filterRecommendRecruit(text: searchText)
-                            guard let recommendRecruit = temp.recommendRecruit else {return nil}
+                             let recommendRecruit = temp.recommendRecruit
                             if recommendRecruit.isEmpty { return nil }
-                            return temp
+                            let cellItem = CellItem.horizontal(temp)
+                            return cellItem
                             
                         default:
                             return nil
@@ -94,8 +95,9 @@ class ViewModel {
         return cellNetwork.getCell()
             .catch({ [weak self] error in
                 self?.errorMessage.accept(error.localizedDescription)
-                return Observable.just(CellData(cellItems: []))
+                return Observable.just(CellData(items: []))
             })
-            .map{ $0.cellItems }
+                .map{ $0.items }
+
     }
 }
