@@ -52,7 +52,7 @@ struct RecruitItem: Decodable, Hashable {
     
 }
 
-struct Company: Decodable,Hashable {
+struct Company: Decodable, Hashable {
     static func == (lhs: Company, rhs: Company) -> Bool {
         lhs.name == rhs.name
     }
@@ -76,11 +76,9 @@ struct Company: Decodable,Hashable {
         
     }
     
-   
 }
     
-
-struct Rating: Decodable,Hashable {
+struct Rating: Decodable, Hashable {
     let type: String
     let rating: Float
 }

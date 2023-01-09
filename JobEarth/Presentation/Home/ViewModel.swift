@@ -14,7 +14,7 @@ class ViewModel {
     private let cellNetwork: CellNetworkInterface
     private let disposebag = DisposeBag()
     private let errorMessage = PublishRelay<String>()
-    init(recruitNetwork:RecruitNetworInterface, cellNetwork:CellNetworkInterface) {
+    init(recruitNetwork: RecruitNetworInterface, cellNetwork: CellNetworkInterface) {
         self.recruitNetwork = recruitNetwork
         self.cellNetwork = cellNetwork
         
@@ -32,7 +32,7 @@ class ViewModel {
         var error: Driver<String>
     }
     
-    func transform(input:Input) ->Output {
+    func transform(input: Input) -> Output {
         let recruitItems = input.recruitTriger.flatMapLatest { searchText -> Driver<[RecruitItem]>  in
             return self.getRecruits()
                 .map({ items in
@@ -60,7 +60,7 @@ class ViewModel {
         return Output(recruitItems: recruitItems, cellItems: cellItems, error: errorMessage.asDriver(onErrorJustReturn: ""))
     }
     
-    private func getRecruits() -> Observable<[RecruitItem]>{
+    private func getRecruits() -> Observable<[RecruitItem]> {
         return recruitNetwork.getRecruit()
             .catch({[weak self] error in
                 self?.errorMessage.accept(error.localizedDescription)
@@ -76,13 +76,13 @@ class ViewModel {
                 self?.errorMessage.accept(error.localizedDescription)
                 return Observable.just(CellData(items: []))
             })
-            .map{ $0.items }
+            .map { $0.items }
 
     }
     
     private func filterData(items: [CellItem], searchText: String) -> [CellItem] {
         let filtered = items.compactMap { item -> CellItem? in
-        switch item{
+            switch item {
             case .company(let companyItem):
                  let name = companyItem.name.lowercased()
                 if name.contains(searchText) {
@@ -96,7 +96,7 @@ class ViewModel {
                 if recommendRecruit.isEmpty { return nil }
                 let cellItem = CellItem.horizontal(temp)
                 return cellItem
-                
+                    
             default:
                 return nil
             }

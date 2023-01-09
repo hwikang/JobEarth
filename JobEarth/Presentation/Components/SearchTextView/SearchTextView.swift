@@ -27,7 +27,7 @@ final class SearchTextView: UIView {
                view.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0),
                view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0.0),
                view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.0),
-               view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0.0),
+               view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0.0)
                ])
        }
         
@@ -44,6 +44,5 @@ final class SearchTextView: UIView {
         textField.placeholder = "기업, 채용공고 검색"
         
     }
-    
 
 }

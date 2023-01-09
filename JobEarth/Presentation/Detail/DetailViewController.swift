@@ -8,14 +8,13 @@
 import Foundation
 import UIKit
 
-
-final class DetailViewController : UIViewController {
+final class DetailViewController: UIViewController {
     private var name: String!
     private var imageUrl: String!
    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    static func initiate(title: String, imageUrl: String) -> DetailViewController{
+    static func initiate(title: String, imageUrl: String) -> DetailViewController {
         let vc = UIStoryboard(name: "Detail", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         vc.name = title
         vc.imageUrl = imageUrl
@@ -31,5 +30,3 @@ final class DetailViewController : UIViewController {
         navigationController?.popViewController(animated: true)
     }
 }
-
-

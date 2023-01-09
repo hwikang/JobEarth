@@ -13,12 +13,12 @@ protocol RecruitNetworInterface {
 }
 
 final class RecruitNetwork: RecruitNetworInterface {
-    private let network : Network<RecruitData>
-    init(network: Network<RecruitData>){
+    private let network: Network<RecruitData>
+    init(network: Network<RecruitData>) {
         self.network = network
     }
     
-    func getRecruit() -> Observable<RecruitData>{
+    func getRecruit() -> Observable<RecruitData> {
         return network.getItem("test_data_recruit_items.json")
     }
 }

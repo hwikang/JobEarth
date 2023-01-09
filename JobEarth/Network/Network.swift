@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxAlamofire
 
-final class Network<T:Decodable> {
+final class Network<T: Decodable> {
     private let endPoint: String = "https://jpassets.jobplanet.co.kr/mobile-config"
    
     func getItem(_ path: String) -> Observable<T> {

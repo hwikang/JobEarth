@@ -13,12 +13,12 @@ protocol CellNetworkInterface {
 }
 
 final class CellNetwork: CellNetworkInterface {
-    private let network : Network<CellData>
-    init(network: Network<CellData>){
+    private let network: Network<CellData>
+    init(network: Network<CellData>) {
         self.network = network
     }
     
-    func getCell() -> Observable<CellData>{
+    func getCell() -> Observable<CellData> {
         return network.getItem("test_data_cell_items.json")
     }
 }

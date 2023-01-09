@@ -17,10 +17,7 @@ class HorizontalHeader: UICollectionReusableView {
         super.init(coder: coder)
     }
     
-    public func configure(title:String){
+    public func configure(title: String) {
         sectionTitle.text = title
       }
-    
-    
-  
 }

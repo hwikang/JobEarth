@@ -1,0 +1,28 @@
+# 실행에서 제외할 룰 식별자들
+disabled_rules:
+- line_length
+- trailing_whitespace
+- function_parameter_count
+- type_body_length
+- redundant_optional_initialization
+# 린트 과정에서 포함할 파일 경로.
+# 이 항목이 존재하면 --path는 무시됨
+included:
+
+# 린트 과정에서 무시할 파일 경로.
+# included 보다 우선순위 높음
+excluded:
+- Pods
+- ProductList/API.swift
+
+force_cast: warning # 가능한 해결
+force_try: warning # 가능한 해결
+
+identifier_name:
+  min_length: # min_length에서 error -> warning
+    warning: 3
+  # 제외할 문자열 목록 사용
+  excluded:
+    - i
+    - vc
+    - id

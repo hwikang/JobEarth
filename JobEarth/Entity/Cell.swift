@@ -5,10 +5,8 @@
 //  Created by Dumveloper on 2023/01/05.
 //
 
-
 import Foundation
-
-struct CellData:Decodable {
+struct CellData: Decodable {
     let items: [CellItem]
     
     enum CodingKeys: String, CodingKey {
@@ -16,7 +14,7 @@ struct CellData:Decodable {
     }
 }
 
-enum CellItem: Decodable , Hashable{
+enum CellItem: Decodable, Hashable {
     case company(Company)
     case horizontal(Horizontal)
     case none
@@ -39,17 +37,15 @@ enum CellItem: Decodable , Hashable{
         }
         
         switch type {
-           case .company:
-               self = try .company(Company(from: decoder))
-           case .horizontal:
-               self = try .horizontal(Horizontal(from: decoder))
+        case .company:
+            self = try .company(Company(from: decoder))
+        case .horizontal:
+            self = try .horizontal(Horizontal(from: decoder))
             
            }
     }
     
- 
-    
-    struct Company: Decodable, Hashable{
+    struct Company: Decodable, Hashable {
         var cellType: CellType
         var name: String
         let logoPath: String
@@ -87,7 +83,7 @@ enum CellItem: Decodable , Hashable{
         }
         
     }
-    struct Horizontal: Decodable , Hashable{
+    struct Horizontal: Decodable, Hashable {
         
         var cellType: CellType
         var sectionTitle: String

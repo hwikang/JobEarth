@@ -13,14 +13,8 @@ enum Section: Hashable {
     case cellHorizontal(String)
 }
 
-
-
-
 enum Item: Hashable {
     case recruit(RecruitItem)
     case cellCompany(CellItem.Company)
     case cellHorizontal(RecruitItem)
 }
-
-
-
