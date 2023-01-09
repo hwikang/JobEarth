@@ -22,53 +22,56 @@ class CompanyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var interviewQuestion: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
-        customInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        customInit()
     }
     
-    private func customInit() {
-        if let view = Bundle.main.loadNibNamed("CompanyCollectionViewCell", owner: self, options: nil)?.first as? UICollectionViewCell {
-           view.frame = self.bounds
-           addSubview(view)
-        }
-        setUI()
-    }
-    
-    private func setUI() {
+    func configCell(item: CellItem) {
+        setLogoImage(item.logoPath)
+        companyName.text = item.name
+        setRateAvg(item.rateTotalAvg)
+        industry.text = item.industryName
+        review.text = item.reviewSummary
+        setSalaryAvg(item.salaryAvg)
+        interviewQuestion.text = item.interviewQuestion
+        setUpdateDate(item.updateDate)
        
     }
     
-    
-    
-    func configCell(item: CellItem) {
-        if let logoPath = item.logoPath {
+    private func setLogoImage(_ path: String?) {
+        if let logoPath = path {
             let url = URL(string: logoPath)
-            logoImage.kf.setImage(with: url)
+            logoImage.kf.setImage(with: url, placeholder: UIImage(named:"placeholder"))
 
         }
-        companyName.text = item.name
-        if let rateTotalAvg = item.rateTotalAvg {
+    }
+    
+    private func setRateAvg(_ avg: Float?) {
+        if let rateTotalAvg = avg {
             rateAvg.text = "\(round((rateTotalAvg * 10)) / 10)"
         }
-     
-        industry.text = item.industryName
-        review.text = item.reviewSummary
-        if let salaryAvg = item.salaryAvg {
+    }
+    private func setSalaryAvg(_ avg: Int?) {
+        if let salaryAvg = avg {
             let format = NumberFormatter()
             format.numberStyle = .decimal
             salartAvg.text =  format.string(for: salaryAvg)
            
         }
-        interviewQuestion.text = item.interviewQuestion
-        
-        review.sizeToFit()
-        interviewQuestion.sizeToFit()
-        
-        
+    }
+    
+    private func setUpdateDate(_ date: String?) {
+        if let date = date {
+            print(date)
+            let splited = date.split(separator: "T")
+            let replaced = splited[0].replacingOccurrences(of: "-", with: ".")
+
+            print("replaced \(replaced)")
+            updateDate.text = replaced
+            
+        }
     }
     
 }

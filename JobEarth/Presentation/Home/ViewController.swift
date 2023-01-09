@@ -41,6 +41,8 @@ class ViewController: UIViewController {
     private func configCollectionView() {
         collectionView.register(RecruitCollectionViewCell.self, forCellWithReuseIdentifier: RecruitCollectionViewCell.id)
         collectionView.register(CompanyCollectionViewCell.self, forCellWithReuseIdentifier: CompanyCollectionViewCell.id)
+        collectionView.register(UINib(nibName: "CompanyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CompanyCollectionViewCell.id)
+
         collectionView.register(UINib(nibName:"HorizontalHeader", bundle: nil), forSupplementaryViewOfKind: HorizontalHeader.id, withReuseIdentifier: HorizontalHeader.id)
         
         setDatasource()
