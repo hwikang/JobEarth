@@ -64,11 +64,9 @@ class CompanyCollectionViewCell: UICollectionViewCell {
     
     private func setUpdateDate(_ date: String?) {
         if let date = date {
-            print(date)
             let splited = date.split(separator: "T")
             let replaced = splited[0].replacingOccurrences(of: "-", with: ".")
 
-            print("replaced \(replaced)")
             updateDate.text = replaced
             
         }
