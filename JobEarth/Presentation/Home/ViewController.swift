@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
-    private var cellTypes: [CellItem.CellType] = []
+//    private var cellTypes: [CellItem.CellType] = []
     
     @IBOutlet weak var collectionTopConstraint: NSLayoutConstraint!
     var test: NSLayoutConstraint?
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
             .drive {[unowned self] items in
                 self.emptyView.isHidden = items.isEmpty ? false : true
                 collectionView.setCollectionViewLayout(createRecruitLayout(), animated: true)
-                let snapshot = createCellItemSnapshot(items: items)
+                let snapshot = createRecruitItemSnapshot(items: items)
                 self.dataSource?.apply(snapshot)
             }
             .disposed(by: disposeBag)
@@ -65,8 +65,6 @@ class ViewController: UIViewController {
         output.cellItems
             .drive {[unowned self] items in
                 self.emptyView.isHidden = items.isEmpty ? false : true
-                cellTypes.removeAll()
-
                 collectionView.setCollectionViewLayout(createCompanyLayout(), animated: true)
                 let snapshot = createCellItemSnapshot(items: items)
                 self.dataSource?.apply(snapshot)
@@ -81,7 +79,7 @@ class ViewController: UIViewController {
 
     }
 
-    private func createCellItemSnapshot(items: [RecruitItem]) -> NSDiffableDataSourceSnapshot<Section, Item> {
+    private func createRecruitItemSnapshot(items: [RecruitItem]) -> NSDiffableDataSourceSnapshot<Section, Item> {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         let sectionItems = items.map { Item.recruit($0) }
         snapshot.appendSections([Section.recruit])
@@ -94,14 +92,12 @@ class ViewController: UIViewController {
         items.forEach { item in
             switch item {
             case .company(let companyItem):
-                cellTypes.append(companyItem.cellType)
                 let sectionItem = Item.cellCompany(companyItem)
                 snapshot.appendSections([Section.cellCompany(companyItem.name)])
                 snapshot.appendItems([sectionItem], toSection: Section.cellCompany(companyItem.name))
             case .horizontal(let horizontalItem):
                  let title = horizontalItem.sectionTitle
                 let recommendRecruit = horizontalItem.recommendRecruit
-                cellTypes.append(horizontalItem.cellType)
                 let section = Section.cellHorizontal(title)
                 snapshot.appendSections([section])
                 let items = recommendRecruit.map { Item.cellHorizontal($0)}
@@ -186,17 +182,17 @@ extension ViewController: UICollectionViewDelegate {
         config.interSectionSpacing = 20.0
         return UICollectionViewCompositionalLayout(sectionProvider: { [unowned self] sectionIndex, _ in
             var section: NSCollectionLayoutSection = LayoutSectionManager.createCellCompanySection()
-            if !cellTypes.isEmpty {
-                let cell = cellTypes[sectionIndex]
-                
-                if cell == .horizontal {
+            if let sectionType = dataSource?.sectionIdentifier(for: sectionIndex) {
+                if case Section.cellHorizontal(_) = sectionType {
                     let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
                     let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HorizontalHeader.id, alignment: .topLeading)
                     header.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
                     section = LayoutSectionManager.createCellHorizontalSection()
                     section.boundarySupplementaryItems = [header]
                 }
+
             }
+           
             self.addScrollEventToSection(section: section)
 
             return section
