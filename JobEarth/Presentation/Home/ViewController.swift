@@ -215,17 +215,24 @@ extension ViewController: UICollectionViewDelegate {
     private func addScrollEventToSection(section: NSCollectionLayoutSection?) {
         let selectCategoryHeight = self.selectCategoryView.frame.height
 
-        section?.visibleItemsInvalidationHandler = {[weak self]   _, point, _ in
-            if point.y > selectCategoryHeight {
-                self?.changeCollectionViewConstraint(offset: -selectCategoryHeight)
+        section?.visibleItemsInvalidationHandler = {[unowned self]   _, point, _ in
+            if !self.checkContentSizeBiggerThanDevice() { return }
+            if point.y > 1 {
+                self.changeCollectionViewConstraint(offset: -selectCategoryHeight)
             } else {
-                self?.changeCollectionViewConstraint(offset: 0)
+                self.changeCollectionViewConstraint(offset: 0)
 
             }
         }
     }
     
+    private func checkContentSizeBiggerThanDevice() -> Bool {
+        let deviceHeight = self.view.safeAreaLayoutGuide.layoutFrame.height
+        return collectionView.contentSize.height > deviceHeight - searchTextView.frame.height
+    }
+    
     private func changeCollectionViewConstraint(offset: CGFloat) {
+        if self.collectionTopConstraint.constant == offset { return }
         self.collectionTopConstraint.constant = offset
     }
     

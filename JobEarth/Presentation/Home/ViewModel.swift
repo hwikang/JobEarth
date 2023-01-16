@@ -70,7 +70,6 @@ class ViewModel {
     }
     
     private func getCells() -> Observable<[CellItem]> {
-        print("getCells")
         return cellNetwork.getCell()
             .catch({ [weak self] error in
                 self?.errorMessage.accept(error.localizedDescription)
